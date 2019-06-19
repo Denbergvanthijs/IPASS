@@ -1,3 +1,4 @@
-/.idea
-/__pycache__
-/notes
+.idea/
+__pycache__/
+notes/
+.ipynb_checkpoints
