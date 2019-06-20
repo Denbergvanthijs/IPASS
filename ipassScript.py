@@ -60,11 +60,10 @@ def plotNormaleVerdeling(mu, sigma, middelpuntAfstand, labels):
 
        Mu en Sigma zijn vaak 0 resp. 1
        MiddelpuntAfstand is de hemelsbrede afstand naar het middelpunt van twee punten."""
-    plt.clf()
     totaleOverlap = berekenPercentageOverlap(middelpuntAfstand, mu, sigma)
-
     lijn = np.linspace(-4 * sigma - middelpuntAfstand,
                        4 * sigma + middelpuntAfstand)  # De lijn van de normale verdelingen
+
     plt.plot(lijn, norm.pdf(lijn, mu - middelpuntAfstand, sigma), label=labels[0])  # De linker normale verdeling
     plt.plot(lijn, norm.pdf(lijn, mu + middelpuntAfstand, sigma), label=labels[1])  # De rechter normale verdeling
     plt.axvline(x=0, color="black", linestyle='--', label='Middelpunt')
@@ -85,7 +84,6 @@ def plotAlleNormaleVerdelingen(punten):
     """Plot de normale verdelingen van alle mogelijke combinaties van punten.
         Returned de afstand tot het middelpunt van alle combinaties.
         Een zichtbare Voronoi is niet nodig om berekeningen uit te voeren."""
-
     vor = Voronoi(punten)
     middelpuntAfstanden = berekenMiddelpuntAfstanden(punten)
 
@@ -103,8 +101,8 @@ def plotVoronoi(punten):
     plt.yticks(np.arange(0, max(punten[:, 1]) + 1))
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
-    plt.legend(handles=[mlines.Line2D([0], [0], marker='o', color='w', label='Punt',
-                                      markerfacecolor='r', markersize=15)])
+    plt.legend(
+        handles=[mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='r', markersize=15)])
     plt.show()
 
 
@@ -116,7 +114,6 @@ def plotVoronoiCompleet(punten, mu, sigma):
     vorPlot(vor)
     ax = plt.gca()
 
-    i = 0
     for i, punt in enumerate(vor.ridge_points):
         totaleOverlap = berekenPercentageOverlap(middelpuntAfstanden[i], mu, sigma)
         middelpunt = vor.points[punt].mean(axis=0)
@@ -125,8 +122,7 @@ def plotVoronoiCompleet(punten, mu, sigma):
 
         ax.add_artist(  # Moet een ellipse worden
             Ellipse((middelpunt[0], middelpunt[1]), max(0.4, totaleOverlap), grens - middelpuntAfstanden[i],
-                    angle=graden,
-                    color="green", fill=False))  # WIP cirkelwidth
+                    angle=graden, color="green", fill=False))  # WIP cirkelwidth
         plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")
         plt.plot([middelpunt[0]], [middelpunt[1]], marker='o', markersize=3, color="green")
 
@@ -136,9 +132,8 @@ def plotVoronoiCompleet(punten, mu, sigma):
     plt.yticks(np.arange(0, max(punten[:, 1]) + 1))
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
-    legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt',
-                             markerfacecolor='r', markersize=15),
-               mlines.Line2D([0], [0], marker='o', color='w', label='Mid. van 2 punten',
-                             markerfacecolor='g', markersize=15)]
+    legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='r', markersize=15),
+               mlines.Line2D([0], [0], marker='o', color='w', label='Mid. van 2 punten', markerfacecolor='g',
+                             markersize=15)]
     plt.legend(handles=legenda)
     plt.show()
