@@ -1,7 +1,13 @@
+import cartopy.crs as ccrs
+import cartopy.io.shapereader as shpreader
 import math
 import matplotlib.lines as mlines
 import matplotlib.pyplot as plt  # Voor de grafieken
 import numpy as np  # Om data als arrays op te kunnen slaan en de normale verdeling te kunnen tekenen
+import pandas as pd
+import time
+from cartopy.io.img_tiles import Stamen
+from geopy.geocoders import Nominatim
 from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
 from matplotlib.patches import Ellipse
 from scipy.spatial import Voronoi
@@ -95,10 +101,10 @@ def plotVoronoi(punten):
     """Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten."""
     vorPlot(Voronoi(punten))
 
-    plt.xlim(0, max(punten[:, 0]) + 1)
-    plt.ylim(0, max(punten[:, 1]) + 1)
-    plt.xticks(np.arange(0, max(punten[:, 0]) + 1))
-    plt.yticks(np.arange(0, max(punten[:, 1]) + 1))
+    #     plt.xlim(min(punten[:, 0]), max(punten[:, 0]))
+    #     plt.ylim(min(punten[:, 1]), max(punten[:, 1]))
+    #     plt.xticks(np.arange(min(punten[:, 0]), max(punten[:, 0])))
+    #     plt.yticks(np.arange(min(punten[:, 1]), max(punten[:, 1])))
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
     plt.legend(
@@ -120,16 +126,15 @@ def plotVoronoiCompleet(punten, mu, sigma):
         graden = berekenHelling(vor.points[punt][0], vor.points[punt][1])
         grens = berekenGrens(0.99, mu, sigma)
 
-        ax.add_artist(  # Moet een ellipse worden
-            Ellipse((middelpunt[0], middelpunt[1]), max(0.4, totaleOverlap), grens - middelpuntAfstanden[i],
-                    angle=graden, color="green", fill=False))  # WIP cirkelwidth
+        ax.add_artist(Ellipse((middelpunt[0], middelpunt[1]), max(0.4, totaleOverlap), grens - middelpuntAfstanden[i],
+                              angle=graden, color="green", fill=False))  # WIP cirkelwidth
         plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")
         plt.plot([middelpunt[0]], [middelpunt[1]], marker='o', markersize=3, color="green")
 
-    plt.xlim(0, max(punten[:, 0]) + 1)
-    plt.ylim(0, max(punten[:, 1]) + 1)
-    plt.xticks(np.arange(0, max(punten[:, 0]) + 1))
-    plt.yticks(np.arange(0, max(punten[:, 1]) + 1))
+    #     plt.xlim(min(punten[:, 0]), max(punten[:, 0]))
+    #     plt.ylim(min(punten[:, 1]), max(punten[:, 1]))
+    #     plt.xticks(np.arange(min(punten[:, 0]), max(punten[:, 0])))
+    #     plt.yticks(np.arange(min(punten[:, 1]), max(punten[:, 1])))
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
     legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='r', markersize=15),
@@ -137,3 +142,68 @@ def plotVoronoiCompleet(punten, mu, sigma):
                              markersize=15)]
     plt.legend(handles=legenda)
     plt.show()
+
+
+def straat2Coord(filePath, woonplaats, woonplaatsHeader, adresHeader):
+    """Berekend aan de hand van een CSV-bestand de breedte- en hoogtegraad.
+       Resultaten worden opgeslagen in een nieuw CSV-bestand `data/geoDataKDV.csv`.
+       Als input wordt om een woonplaats gevraagd. Alle punten die aan de waarde 'woonplaats voldoen'
+       in de kolom 'woonplaatsHeader' worden geimporteerd.
+
+       De breedte- en lengtegraad van de waardes die zich bevinden in de kolom 'adresHeader' worden opgevraagd.
+       Duplicaten worden direct overgeslagen.
+    """
+    print("Even geduld a.u.b, dit kan even duren...")
+    data = pd.read_csv(filePath, sep=";")  # Data uitlezen uit bestand
+    subset = data.loc[data[woonplaatsHeader] == woonplaats]  # Selectie maken van de data
+
+    geolocator = Nominatim(user_agent="IPASS Project - Thijs van den Berg - 2019")  # Variabele opzetten voor API-calls
+    geoLocaties = pd.DataFrame(columns=['lat', 'long'])  # DataFrame
+
+    for adres in subset[adresHeader].drop_duplicates():  # Ieder adres omzetten naar coördinaten
+        locatie = geolocator.geocode(f"{adres} {woonplaats}")
+        geoLocaties = geoLocaties.append({'lat': locatie.latitude, 'long': locatie.longitude}, ignore_index=True)
+        time.sleep(0.5)  # ToManyRequestsError
+
+    geoLocaties.to_csv("data/geoDataKDV.csv")  # Data opslaan tbv de snelheid
+    print(geoLocaties.head())
+
+
+def kaartMaken(filePath, terrein=True, cropped=True):
+    """Maakt een kaart gebaseerd op de coordinaten in een CSV-bestand.
+
+    terrein=True kan enkele seconden langer duren dan False. Echter krijgt de kaart dan wel een grafische background.
+    cropped=False om een kaart van geheel Nederland te krijgen. Dit is handig wanneer de punten niet op één enkele
+    woonplaats zijn gebasseerd.
+    """
+    coordinaten = pd.read_csv(filePath, sep=",")
+    coordinaten = coordinaten.loc[(coordinaten['lat'] < 53.5) & (coordinaten['lat'] > 50.7) &
+                                  (coordinaten['long'] < 7.3) & (coordinaten['long'] > 3.3)]  # Filter Nederland
+    coordinaten = coordinaten.values[:, 1:]  # Index van DF verwijderen en omzetten naar NP-array
+
+    shapeFile = 'shapefiles/gadm36_NLD_2.shp'
+    kaart = list(shpreader.Reader(shapeFile).geometries())
+    ax = plt.axes(projection=ccrs.EuroPP())
+
+    if terrein:
+        stamen_terrain = Stamen('terrain-background')
+        ax.add_image(stamen_terrain, 12)
+        ax.add_geometries(kaart, ccrs.PlateCarree(), edgecolor='black', facecolor='none', alpha=1)
+    else:
+        ax.add_geometries(kaart, ccrs.PlateCarree(), edgecolor='black', facecolor='orange', alpha=0.2, )
+
+    if cropped:
+        ax.set_extent([min(coordinaten[:, 1]), max(coordinaten[:, 1]),
+                       min(coordinaten[:, 0]), max(coordinaten[:, 0])])  # Grootte gelijk aan min/max van coordinaten
+    else:
+        ax.set_extent([3.3, 7.3, 50.7, 53.5])  # Filter Nederland
+
+    for lat, long in coordinaten:  # Stippen tekenen
+        ax.plot(long, lat, marker='o', markersize=3, color="green", transform=ccrs.PlateCarree())
+
+    plt.tight_layout()
+    plt.show()
+
+
+# straat2Coord('data/dataKDV.csv', 'Wageningen', 'opvanglocatie_woonplaats', 'opvanglocatie_adres')
+kaartMaken("data/geoDataKDV.csv", terrein=False, cropped=True)
