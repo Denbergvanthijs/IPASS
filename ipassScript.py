@@ -83,6 +83,7 @@ def plotNormaleVerdeling(mu, sigma, middelpuntAfstand, labels):
 
        Mu en Sigma zijn vaak 0 resp. 1
        MiddelpuntAfstand is de hemelsbrede afstand naar het middelpunt van twee punten."""
+    plt.rcParams['figure.figsize'] = [9, 6]  # Grotere plots in Jupyter Notebook
     totaleOverlap = berekenPercentageOverlap(middelpuntAfstand, mu, sigma)
     lijn = np.linspace(mu - 4 * sigma - middelpuntAfstand,
                        mu + 4 * sigma + middelpuntAfstand)  # De lijn van de normale verdelingen
@@ -117,6 +118,7 @@ def plotAlleNormaleVerdelingen(punten):
 
 def plotVoronoi(punten):
     """Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten."""
+    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
     vorPlot(Voronoi(punten))
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
@@ -125,9 +127,10 @@ def plotVoronoi(punten):
     plt.show()
 
 
-def plotVoronoiCompleet(punten, mu, sigma):
+def plotVoronoiCompleet(punten, mu, sigma, tekst=True):
     """Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten.
        Bij ieder middelpunt is het %-overlap te zien en het daarbijbehordende bereik."""
+    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
     middelpuntAfstanden = berekenMiddelpuntAfstanden(punten)
     vor = Voronoi(punten)
     vorPlot(vor)
@@ -142,7 +145,8 @@ def plotVoronoiCompleet(punten, mu, sigma):
         if round(totaleOverlap * 100, 2) > 0.00:
             ax.add_artist(Ellipse((middelpunt[0], middelpunt[1]), sigma * totaleOverlap, grens - middelpuntAfstanden[i],
                                   angle=graden, color="green", fill=False))
-            plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")
+            if tekst:
+                plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")
             plt.plot([middelpunt[0]], [middelpunt[1]], marker='o', markersize=3, color="green")
 
     plt.xlabel("X-coördinaten")
@@ -154,26 +158,35 @@ def plotVoronoiCompleet(punten, mu, sigma):
     plt.show()
 
 
-def plotVerloop(matrix, vector, perioden, labels):
+def plotVerloop(punten, vector, perioden, mu=0, sigma=1, legenda=True):
     """Plot het verloop van matrix-vector multiplicatie."""
+    print("Even geduld a.u.b, dit kan even duren...")
+    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    matrix = berekenPercentageOverlapMatrix(punten, mu, sigma)
     lijst = []
-    for x in range(perioden + 1):
-        lijst.append(vector.dot(np.linalg.matrix_power(matrix, x)))
+
+    for periode in range(perioden + 1):
+        verloop = vector.dot(np.linalg.matrix_power(matrix, periode))
+        verloop = np.where(verloop > 1, 1, verloop)
+        lijst.append(verloop)
     lijst = np.vstack(lijst)
 
     for i, tijdstip in enumerate(lijst.T):
-        plt.plot(tijdstip, label=f"Punt {labels[i]}")
+        plt.plot(tijdstip, label=f"Punt {punten[i]}")
 
-    plt.xlabel("N-dagen")
+    if legenda:
+        plt.legend(loc="lower right")
+
+    plt.xlabel("Periodes")
     plt.ylabel("Infectiegraad")
     plt.xlim(0, perioden)
-    plt.ylim(0, 1)
-    plt.legend()
+    plt.ylim(0, 1.1)
+    plt.title(f"Aantal punten: {len(punten)}")
     plt.tight_layout()  # Alles past zo beter op de grafiek
     plt.show()
 
 
-def straat2Coord(filePath, woonplaats, woonplaatsHeader, adresHeader):
+def straat2Coord(filePath, woonplaats, woonplaatsHeader, adresHeader, sep=";"):
     """Berekend aan de hand van een CSV-bestand de breedte- en hoogtegraad.
        Resultaten worden opgeslagen in een nieuw CSV-bestand `data/geoDataKDV.csv`.
        Als input wordt om een woonplaats gevraagd. Alle punten die aan de waarde 'woonplaats voldoen'
@@ -183,16 +196,22 @@ def straat2Coord(filePath, woonplaats, woonplaatsHeader, adresHeader):
        Duplicaten worden direct overgeslagen.
     """
     print("Even geduld a.u.b, dit kan even duren...")
-    data = pd.read_csv(filePath, sep=";")  # Data uitlezen uit bestand
+    data = pd.read_csv(filePath, sep=sep)  # Data uitlezen uit bestand
     subset = data.loc[data[woonplaatsHeader] == woonplaats]  # Selectie maken van de data
 
-    geolocator = Nominatim(user_agent="IPASS Project - Thijs van den Berg 2019")  # Variabele opzetten voor API-calls
+    geolocator = Nominatim(user_agent="IPASS Project - Thijs van den Berg 2019")  # Variabele opzetten voor API-calls   
     geoLocaties = pd.DataFrame(columns=['latitude', 'longitude'])  # DataFrame
 
     for adres in subset[adresHeader].drop_duplicates():  # Ieder adres omzetten naar coördinaten
-        locatie = geolocator.geocode(f"{adres} {woonplaats}")
-        geoLocaties = geoLocaties.append({'latitude': locatie.latitude, 'longitude': locatie.longitude},
-                                         ignore_index=True)
+        try:
+            locatie = geolocator.geocode(f"{adres} {woonplaats}")
+        except GeocoderTimedOut:
+            pass
+
+        if locatie is not None:
+            geoLocaties = geoLocaties.append({'latitude': locatie.latitude, 'longitude': locatie.longitude},
+                                             ignore_index=True)
+
         time.sleep(0.5)  # ToManyRequestsError
 
     bestand = os.path.basename(filePath)
@@ -210,7 +229,7 @@ def coord2Coord(filePath, latNaam, longNaam):
        Het bestand kan vervolgens worden gebruikt om Voronoi's of kaarten te maken.
        """
 
-    print("Even geduld a.u.b, dit kan even duren...\n")
+    print("Even geduld a.u.b, dit kan even duren...")
     data = pd.read_csv(filePath, sep=";")  # Data uitlezen uit bestand
 
     geoLocaties = data[[latNaam, longNaam]].rename(columns={latNaam: "latitude", longNaam: "longitude"})
@@ -229,6 +248,7 @@ def kaartMaken(filePath, terrein=True, cropped=True):
     woonplaats zijn gebasseerd.
     """
     print("Kaart aan het maken. \nEven geduld a.u.b, dit kan even duren...")
+    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
     coordinaten = pd.read_csv(filePath, sep=",")
     coordinaten = coordinaten.loc[(coordinaten['latitude'] < 53.5) & (coordinaten['latitude'] > 50.7) &
                                   (coordinaten['longitude'] < 7.3) & (
