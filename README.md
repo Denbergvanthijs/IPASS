@@ -1,3 +1,6 @@
+# IPASS
+Thijs van den Berg - 1740697
+
 ### Bronnen:
 Malhotra, R., Dey, D., van Doorn, E. A., & Koonen, A. M. J. (2000). Traffic modeling in a reconfigurable broadband nomadic computing environment. In Proceedings of SPIE Vol. 4211: Internet, Performance and Control of Network Systems (pp. -). Boston.  
 https://matplotlib.org/mpl_toolkits/mplot3d/tutorial.html  
@@ -10,4 +13,5 @@ http://apmonitor.com/wiki/index.php/Apps/MeaslesVirus
 https://data.overheid.nl/dataset/47539-distributiekasten-lichtnet-den-haag  
 https://data.overheid.nl/dataset/58437-hondenpoepbakken-tilburg  
 https://stackoverflow.com/questions/678236/how-to-get-the-filename-without-the-extension-from-a-path-in-python  
-https://data.overheid.nl/dataset/48412-zorginstellingen-utrecht
+https://data.overheid.nl/dataset/48412-zorginstellingen-utrecht  
+https://docs.python-guide.org/writing/structure/
