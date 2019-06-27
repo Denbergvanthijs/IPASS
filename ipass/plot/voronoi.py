@@ -22,19 +22,19 @@ def voronoi_compleet(punten, mu, sigma, tekst=True):
     """Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten.
        Bij ieder middelpunt is het %-overlap te zien en het daarbijbehordende bereik."""
     plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
-    middelpuntAfstanden = bereken.middelpunt_afstand(punten)
+    middelpunt_afstanden = bereken.middelpunt_afstanden(punten)
     vor = Voronoi(punten)
     SPvorPlot(vor)
     ax = plt.gca()
 
     for i, punt in enumerate(vor.ridge_points):
-        totaleOverlap = bereken.perc_overlap(middelpuntAfstanden[i], mu, sigma)
+        totaleOverlap = bereken.perc_overlap(middelpunt_afstanden[i], mu, sigma)
         middelpunt = vor.points[punt].mean(axis=0)
         graden = bereken.helling(vor.points[punt][0], vor.points[punt][1])
         grens = bereken.grens(0.999, mu, sigma)
 
         if round(totaleOverlap * 100, 2) > 0.00:
-            ax.add_artist(Ellipse((middelpunt[0], middelpunt[1]), sigma * totaleOverlap, grens - middelpuntAfstanden[i],
+            ax.add_artist(Ellipse((middelpunt[0], middelpunt[1]), sigma * totaleOverlap, grens - middelpunt_afstanden[i],
                                   angle=graden, color="green", fill=False))
             if tekst:
                 plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")

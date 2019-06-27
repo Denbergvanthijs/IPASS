@@ -42,7 +42,7 @@ def normale_verdeling_compleet(punten):
         Returned de afstand tot het middelpunt van alle combinaties.
         Een zichtbare Voronoi is niet nodig om berekeningen uit te voeren."""
     vor = Voronoi(punten)
-    middelpuntAfstanden = bereken.middelpunt_afstand(punten)
+    middelpunt_afstanden = bereken.middelpunt_afstanden(punten)
 
-    for i, punt in enumerate(middelpuntAfstanden):
+    for i, punt in enumerate(middelpunt_afstanden):
         normale_verdeling(0, 1, punt, vor.points[vor.ridge_points[i]])
