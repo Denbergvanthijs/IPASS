@@ -1,10 +1,13 @@
 import matplotlib.lines as mlines
 import matplotlib.pyplot as plt  # Voor de grafieken
+from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
 from matplotlib.patches import Ellipse
 from scipy.spatial import Voronoi
 from scipy.spatial import voronoi_plot_2d as SPvorPlot
 
 from ipass import bereken
+
+style.use('seaborn')
 
 
 def voronoi(punten):
@@ -14,7 +17,7 @@ def voronoi(punten):
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
     plt.legend(
-        handles=[mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='r', markersize=15)])
+        handles=[mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='b', markersize=15)])
     plt.show()
 
 
@@ -34,15 +37,16 @@ def voronoi_compleet(punten, mu, sigma, tekst=True):
         grens = bereken.grens(0.999, mu, sigma)
 
         if round(totaleOverlap * 100, 2) > 0.00:
-            ax.add_artist(Ellipse((middelpunt[0], middelpunt[1]), sigma * totaleOverlap, grens - middelpunt_afstanden[i],
-                                  angle=graden, color="green", fill=False))
+            ax.add_artist(
+                Ellipse((middelpunt[0], middelpunt[1]), sigma * totaleOverlap, grens - middelpunt_afstanden[i],
+                        angle=graden, color="green", fill=False))
             if tekst:
                 plt.text(middelpunt[0], middelpunt[1], f"{round(totaleOverlap * 100, 2)}%")
             plt.plot([middelpunt[0]], [middelpunt[1]], marker='o', markersize=3, color="green")
 
     plt.xlabel("X-coördinaten")
     plt.ylabel("Y-coördinaten")
-    legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='r', markersize=15),
+    legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='b', markersize=15),
                mlines.Line2D([0], [0], marker='o', color='w', label='Mid. van 2 punten', markerfacecolor='g',
                              markersize=15)]
     plt.legend(handles=legenda)

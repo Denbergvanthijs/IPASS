@@ -6,7 +6,7 @@ from scipy.stats import norm  # Om de lijn van de normale verdeling te tekenen. 
 
 from ipass import bereken
 
-style.use('ggplot')
+style.use('seaborn')
 
 
 def normale_verdeling(mu: float, sigma: float, mid_afstand: float, labels: tuple) -> None:
