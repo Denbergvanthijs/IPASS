@@ -71,9 +71,10 @@ def coord2coord(file_path: str, lat_header: str, long_header: str) -> None:
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 
     print("Even geduld a.u.b, dit kan even duren...")
-    data = pd.read_csv(file_path, sep=";")  # Data uitlezen uit bestand
+    csv_data = pd.read_csv(file_path, sep=";")  # Data uitlezen uit bestand
 
-    geo_locaties = data[[lat_header, long_header]].rename(columns={lat_header: "latitude", long_header: "longitude"})
+    geo_locaties = csv_data[[lat_header, long_header]].rename(
+        columns={lat_header: "latitude", long_header: "longitude"})  # Twee kolommen uit de data halen en hernoemen
 
     abs_path = os.path.basename(file_path)
     file_name = os.path.splitext(abs_path)[0]

@@ -114,10 +114,10 @@ def middelpunt_afstanden(punten: np.ndarray) -> list:
     for punt in vor.ridge_points:
         middelpunt = vor.points[punt].mean(axis=0)
 
-        afstand = np.sqrt(  # Wortel van [A^2 + B^2]
+        mid_afstand = np.sqrt(  # Wortel van [A^2 + B^2]
             np.sum(  # ΔA^2 + ΔB^2
                 np.square(  # Macht van ΔA en ΔB
                     middelpunt - vor.points[punt][0])))  # [ΔA, ΔB]
 
-        afstanden.append(afstand)
+        afstanden.append(mid_afstand)
     return afstanden
