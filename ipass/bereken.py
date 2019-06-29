@@ -15,7 +15,6 @@ def perc_overlap(mid_afstand: float, mu: float, sigma: float) -> float:
        :param mid_afstand: Afstand van de twee punten tot het middelpunt
        :param mu: gemiddelde van de normale verdelingen
        :param sigma: standaard deviatie van de normale verdelingen
-
        :returns: het totale percentage dat de twee normale verdelingen elkaar overlappen.
                  0 < perc < 1
     """
@@ -31,7 +30,6 @@ def perc_overlap_matrix(punten: np.ndarray, mu: float, sigma: float) -> np.ndarr
     :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
     :param mu: gemiddelde van de normale verdelingen
     :param sigma: standaard deviatie van de normale verdelingen
-
     :returns: matrix van n bij n met alle percentages dat de punten overlappen
     """
     if not isinstance(punten, np.ndarray) or not isinstance(mu, (int, float)) \
@@ -60,13 +58,11 @@ def grens(grens_perc: float, mu: float, sigma: float) -> float:
        0.00 < grens < 1.00
        Kan gebruikt worden om de hoogte van de Ellipse in Voronoi-diagrammen te bepalen
 
-       :param grens_perc: getal tussen 0 en 1. Stel grens_waarde is 0.2 dan wordt het aantal
-       standaard deviaties van mu(50%) tot 20% berekend.
+       :param grens_perc: getal tussen 0 en 1. Stel grens_waarde is 0.2 dan wordt het aantal standaard deviaties van mu(50%) tot 20% berekend.
        :param mu: gemiddelde van de normale verdelingen
        :param sigma: standaard deviatie van de normale verdelingen
-
        :return: het aantal standaard deviaties van mu tot de grens_waarde
-       """
+    """
     if not isinstance(grens_perc, (int, float)) or not isinstance(mu, (int, float)) \
             or not isinstance(sigma, (int, float)):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
@@ -79,12 +75,12 @@ def grens(grens_perc: float, mu: float, sigma: float) -> float:
 
 def helling(punt1: np.ndarray, punt2: np.ndarray) -> float:
     """Berekend de helling in graden tussen twee coordinaten.
-       Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen
+       Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen.
 
-       :param punt1:  Numpy array met een enkele row: [x, y]
+       :param punt1: Numpy array met een enkele row: [x, y]
        :param punt2: Numpy array met een enkele row: [x, y]
        :return: de hoek in aantal graden tussen punt1 en punt2
-       """
+    """
     if not isinstance(punt1, np.ndarray) or not isinstance(punt2, np.ndarray):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 
@@ -104,7 +100,7 @@ def middelpunt_afstanden(punten: np.ndarray) -> list:
 
        :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
        :return: lijst van afstanden tussen alle belanghebbende punten
-       """
+    """
     if not isinstance(punten, (np.ndarray, pd.DataFrame)):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 

@@ -25,7 +25,7 @@ def voronoi(punten: np.ndarray, mu: float, sigma: float, tekst: bool = True, ell
        :param sigma: standaard deviatie van de normale verdelingen
        :param tekst: keuze of de percentages zichtbaar zijn in de plot.
                      Aan te raden om uit te zetten bij veel punten.
-       :param ellipse keuze of de ellipsen zichtbaar zijn in de plot.
+       :param ellipse: keuze of de ellipsen zichtbaar zijn in de plot.
                      Aan te raden om uit te zetten bij veel punten
 
        :returns: Plot met een Voronoi-diagram en stippen op de coordinaten meegegeven in 'punten'
