@@ -123,37 +123,38 @@ def verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0
     plt.show()
 
 
-def kaart(filePath, terrein=True, cropped=True):
+def kaart(file_path: str, terrein: bool = True, sep: str = ",") -> None:
     """Maakt een kaart gebaseerd op de coordinaten in een CSV-bestand.
 
-    terrein=True kan enkele seconden langer duren dan False. Echter krijgt de kaart dan wel een grafische background.
-    cropped=False om een kaart van geheel Nederland te krijgen. Dit is handig wanneer de punten niet op één enkele
-    woonplaats zijn gebasseerd.
+    :param file_path: Pad naar het te plotten CSV-bestand
+    :param terrein: optioneel, zorgt voor een grafische achtergrond van de plot. Kan enkele seconden langer duren.
+    :param sep: optioneel, seperator van het CSV-bestand
+
+    :returns: Een kaart met de geplotte punten, al dan niet met een 'terrein-achtergrond'
     """
+    if not isinstance(file_path, str) or not isinstance(terrein, bool) or not isinstance(sep, str):
+        raise ValueError("Verkeerde waardes meegegeven als argumenten")
+
     print("Kaart aan het maken. \nEven geduld a.u.b, dit kan even duren...")
     plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
-    coordinaten = pd.read_csv(filePath, sep=",")
-    coordinaten = coordinaten.loc[
-        (coordinaten['latitude'] < 53.5) & (coordinaten['latitude'] > 50.7) & (coordinaten['longitude'] < 7.3) & (
-                coordinaten['longitude'] > 3.3)]  # Filter Nederland
+
+    coordinaten = pd.read_csv(file_path, sep=sep)
+    coordinaten = coordinaten.loc[(coordinaten['latitude'] < 53.5) & (coordinaten['latitude'] > 50.7) &
+                                  (coordinaten['longitude'] < 7.3) & (coordinaten['longitude'] > 3.3)]  # Filter NL
     coordinaten = coordinaten.values[:, :]  # DataFrame omzetten naar NP-array
 
     sf_path = 'data/shapefiles/gadm36_NLD_2.shp'
     sf_data = list(shpreader.Reader(sf_path).geometries())
-    ax = plt.axes(projection=ccrs.EuroPP())
 
+    ax = plt.axes(projection=ccrs.EuroPP())
     if terrein:
-        stamen_terrain = Stamen('terrain-background')
-        ax.add_image(stamen_terrain, 12)
+        ax.add_image(Stamen('terrain-background'), 12)
         ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor='black', facecolor='none', alpha=1)
     else:
-        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor='black', facecolor='orange', alpha=0.2, )
+        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor='black', facecolor='orange', alpha=0.2)
 
-    if cropped:
-        ax.set_extent([min(coordinaten[:, 1]), max(coordinaten[:, 1]),
-                       min(coordinaten[:, 0]), max(coordinaten[:, 0])])  # Grootte gelijk aan min/max van coordinaten
-    else:
-        ax.set_extent([3.3, 7.3, 50.7, 53.5])  # Filter Nederland
+    ax.set_extent([min(coordinaten[:, 1]), max(coordinaten[:, 1]),
+                   min(coordinaten[:, 0]), max(coordinaten[:, 0])])  # Grootte gelijk aan min/max van coordinaten
 
     for lat, long in coordinaten:  # Stippen tekenen
         ax.plot(long, lat, marker='o', markersize=3, color="green", transform=ccrs.PlateCarree())
