@@ -1,0 +1,309 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Package: ipass &#8212; IPASS 1.1.0 documentatie</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Zoeken" href="search.html" />
+    <link rel="next" title="Package: ipass.plot" href="ipass.plot.html" />
+    <link rel="prev" title="IPASS 2018 - 2019 Documentatie" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigatie</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Algemene index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python-moduleïndex"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ipass.plot.html" title="Package: ipass.plot"
+             accesskey="N">volgende</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="IPASS 2018 - 2019 Documentatie"
+             accesskey="P">vorige</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IPASS 1.1.0 documentatie</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="package-ipass">
+<h1>Package: ipass<a class="headerlink" href="#package-ipass" title="Permalink naar deze titel">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink naar deze titel">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="ipass.plot.html">Package: ipass.plot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipass.plot.html#module-ipass.plot.norm_verd">Module: ipass.plot.norm_verd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipass.plot.html#module-ipass.plot.plot">Module: ipass.plot.plot</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-ipass.bereken">
+<span id="module-ipass-bereken"></span><h2>Module: ipass.bereken<a class="headerlink" href="#module-ipass.bereken" title="Permalink naar deze titel">¶</a></h2>
+<dl class="function">
+<dt id="ipass.bereken.grens">
+<code class="descclassname">ipass.bereken.</code><code class="descname">grens</code><span class="sig-paren">(</span><em>grens_perc: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ipass.bereken.grens" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Berekend het aantal standaard deviaties dat nodig is om op een bepaalde cumulatieve kans te komen.
+Dezelfde functie als invNorm op de Texas Instruments grafische rekenmachines.
+0.00 &lt; grens &lt; 1.00
+Kan gebruikt worden om de hoogte van de Ellipse in Voronoi-diagrammen te bepalen</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>grens_perc</strong> – getal tussen 0 en 1. Stel grens_waarde is 0.2 dan wordt het aantal standaard deviaties van mu(50%) tot 20% berekend.</li>
+<li><strong>mu</strong> – gemiddelde van de normale verdelingen</li>
+<li><strong>sigma</strong> – standaard deviatie van de normale verdelingen</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">het aantal standaard deviaties van mu tot de grens_waarde</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.helling">
+<code class="descclassname">ipass.bereken.</code><code class="descname">helling</code><span class="sig-paren">(</span><em>punt1: numpy.ndarray</em>, <em>punt2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ipass.bereken.helling" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Berekend de helling in graden tussen twee coordinaten.
+Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>punt1</strong> – Numpy array met een enkele row: [x, y]</li>
+<li><strong>punt2</strong> – Numpy array met een enkele row: [x, y]</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">de hoek in aantal graden tussen punt1 en punt2</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.middelpunt_afstanden">
+<code class="descclassname">ipass.bereken.</code><code class="descname">middelpunt_afstanden</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#ipass.bereken.middelpunt_afstanden" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Berekend de afstand tot het middelpunt voor iedere combinatie van twee punten.
+Input is een np.array() van N bij 2.
+Gebaseerd op: <a class="reference external" href="https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py">https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">lijst van afstanden tussen alle belanghebbende punten</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.perc_overlap">
+<code class="descclassname">ipass.bereken.</code><code class="descname">perc_overlap</code><span class="sig-paren">(</span><em>mid_afstand: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#ipass.bereken.perc_overlap" title="Permalink naar deze definitie">¶</a></dt>
+<dd><dl class="docutils">
+<dt>Berekend het percentage overlap tussen twee punten.</dt>
+<dd><p class="first">norm.cdf(-n) berekend de kans tot n SD.
+In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande</p>
+<p class="last">Door deze waarde maal twee te doen hebben we de totale overlapping.</p>
+</dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>mid_afstand</strong> – Afstand van de twee punten tot het middelpunt</li>
+<li><strong>mu</strong> – gemiddelde van de normale verdelingen</li>
+<li><strong>sigma</strong> – standaard deviatie van de normale verdelingen</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">het totale percentage dat de twee normale verdelingen elkaar overlappen.
+0 &lt; perc &lt; 1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.perc_overlap_matrix">
+<code class="descclassname">ipass.bereken.</code><code class="descname">perc_overlap_matrix</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#ipass.bereken.perc_overlap_matrix" title="Permalink naar deze definitie">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</li>
+<li><strong>mu</strong> – gemiddelde van de normale verdelingen</li>
+<li><strong>sigma</strong> – standaard deviatie van de normale verdelingen</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">matrix van n bij n met alle percentages dat de punten overlappen</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ipass.convertCSV">
+<span id="module-ipass-convertcsv"></span><h2>Module: ipass.convertCSV<a class="headerlink" href="#module-ipass.convertCSV" title="Permalink naar deze titel">¶</a></h2>
+<dl class="function">
+<dt id="ipass.convertCSV.coord2coord">
+<code class="descclassname">ipass.convertCSV.</code><code class="descname">coord2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>lat_header: str</em>, <em>long_header: str</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ipass.convertCSV.coord2coord" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Haalt uit een CSV-bestand de latitude- en longitudekolom.
+De gebruiker dient de namen van de kolommen waarde latitude en logitude
+zijn opgeslagen op te geven.
+Deze kolommen worden opgeslagen in een nieuw bestand met de prefix <cite>geo_</cite>.</p>
+<p>Het bestand kan vervolgens worden gebruikt om Voronoi’s of kaarten te maken.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_path</strong> – totale path naar het te converteren bestand</li>
+<li><strong>lat_header</strong> – naam van de kolom die de latitude bevat</li>
+<li><strong>long_header</strong> – naam van de kolom die de longiutde bevat</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Geconverteerd bestand opgeslagen in data/output/. Bestand bevat de headers latitude en longitude</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.convertCSV.straat2coord">
+<code class="descclassname">ipass.convertCSV.</code><code class="descname">straat2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>woonplaats: str</em>, <em>woonplaats_header: str</em>, <em>adres_header: str</em>, <em>sep: str = ';'</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#ipass.convertCSV.straat2coord" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Berekend aan de hand van een CSV-bestand de breedte- en hoogtegraad.
+Resultaten worden opgeslagen in een nieuw CSV-bestand <cite>data/geoDataKDV.csv</cite>.
+Als input wordt om een woonplaats gevraagd. Alle punten die aan de waarde ‘woonplaats voldoen’
+in de kolom ‘woonplaatsHeader’ worden geimporteerd.</p>
+<p>De breedte- en lengtegraad van de waardes die zich bevinden in de kolom ‘adresHeader’ worden opgevraagd.
+Duplicaten worden direct overgeslagen.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>file_path</strong> – totale path naar het te converteren bestand</li>
+<li><strong>woonplaats</strong> – woonplaats waar een selectie uit (landelijke) data word gehaald</li>
+<li><strong>woonplaats_header</strong> – kolom waar de waarde <cite>woonplaats</cite> zich in bevind</li>
+<li><strong>adres_header</strong> – kolom met de adressen die omgezet mooeten worden. Idealieter adres + huisnummer</li>
+<li><strong>sep</strong> – separator voor CSV-bestand, standaard ‘;’ maar kan ook ‘,’ of iets anders zijn</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Geconverteerd bestand opgeslagen in data/output/. Bestand bevat de headers latitude en longitude</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Package: ipass</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#module-ipass.bereken">Module: ipass.bereken</a></li>
+<li><a class="reference internal" href="#module-ipass.convertCSV">Module: ipass.convertCSV</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Vorig onderwerp</h4>
+  <p class="topless"><a href="index.html"
+                        title="vorig hoofdstuk">IPASS 2018 - 2019 Documentatie</a></p>
+  <h4>Volgend onderwerp</h4>
+  <p class="topless"><a href="ipass.plot.html"
+                        title="volgend hoofdstuk">Package: ipass.plot</a></p>
+  <div role="note" aria-label="source link">
+    <h3>Deze pagina</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/ipass.rst.txt"
+            rel="nofollow">Broncode weergeven</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Snel zoeken</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Zoek" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigatie</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="Algemene index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python-moduleïndex"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ipass.plot.html" title="Package: ipass.plot"
+             >volgende</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="IPASS 2018 - 2019 Documentatie"
+             >vorige</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">IPASS 1.1.0 documentatie</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Thijs van den Berg.
+      Aangemaakt met <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
