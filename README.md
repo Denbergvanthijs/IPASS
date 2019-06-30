@@ -7,7 +7,9 @@
 
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
 Alle code bevind zich in `ipass/`. Dit is de libary.
-De code maakt gebruik van en genereerd data in `data/`
+De code maakt gebruik van en genereerd data in `data/`.
+De applicatie waarmee de functionaliteit aan de hand van verschillende
+casussen wordt getoont is te vinden in `app.ipynb`. 
 
 De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
 gegenereerd, deze zijn te vinden in `docs/build/html/index.html`
