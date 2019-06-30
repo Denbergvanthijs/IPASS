@@ -3,5 +3,6 @@ geopy
 matplotlib
 numpy
 pandas
+pytest
 scipy
 sphinx

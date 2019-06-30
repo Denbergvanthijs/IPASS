@@ -22,6 +22,9 @@ def perc_overlap(mid_afstand: float, mu: float, sigma: float) -> float:
             or not isinstance(sigma, (int, float)):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 
+    if sigma <= 0:
+        raise ValueError("Sigma kan niet negatief zijn")
+
     return norm.cdf(-mid_afstand + mu, loc=mu, scale=sigma) * 2
 
 
