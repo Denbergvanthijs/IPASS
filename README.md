@@ -2,9 +2,6 @@
 <img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
 
 
-© Thijs van den Berg 2019  
-1740697
-
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
 Alle code bevind zich in `ipass/`. Dit is de libary.
 De code maakt gebruik van en genereerd data in `data/`.
@@ -19,7 +16,8 @@ EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:   
 `pip install -r requirements.txt `
 
-
+© Thijs van den Berg 2019    
+1740697
 
 ### Bronnen:
 Malhotra, R., Dey, D., van Doorn, E. A., & Koonen, A. M. J. (2000). Traffic modeling in a reconfigurable broadband nomadic computing environment. In Proceedings of SPIE Vol. 4211: Internet, Performance and Control of Network Systems. Boston.  
