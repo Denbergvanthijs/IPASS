@@ -110,6 +110,28 @@ Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepal
 </dd></dl>
 
 <dl class="function">
+<dt id="ipass.bereken.matrix_maal_matrix">
+<code class="descclassname">ipass.bereken.</code><code class="descname">matrix_maal_matrix</code><span class="sig-paren">(</span><em>m1: numpy.ndarray</em>, <em>m2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#ipass.bereken.matrix_maal_matrix" title="Permalink naar deze definitie">¶</a></dt>
+<dd><p>Vermenigvuldigd matrix m maal n en zet alle waardes boven 1, op 1.
+Dit aangezien de ‘infectiegraad’ nooit meer dan 100% kan zijn.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>m1</strong> – matrix van n bij n</li>
+<li><strong>m2</strong> – matrix van n bij n</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">matrix van n bij n, geen enkele waarde meer dan 1</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="ipass.bereken.middelpunt_afstanden">
 <code class="descclassname">ipass.bereken.</code><code class="descname">middelpunt_afstanden</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; list<a class="headerlink" href="#ipass.bereken.middelpunt_afstanden" title="Permalink naar deze definitie">¶</a></dt>
 <dd><p>Berekend de afstand tot het middelpunt voor iedere combinatie van twee punten.

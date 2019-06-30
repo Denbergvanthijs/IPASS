@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='IPASS-repo-denbergvanthijs',
-    version="2019.06.30",
+    version="2019.06.30.1",
     author="Thijs van den Berg",
     author_email="denbergvanthijs@gmail.com",
     description='IPASS eindproject 2018 - 2019',
@@ -15,7 +15,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ],
 )
