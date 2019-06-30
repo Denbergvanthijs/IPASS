@@ -1,15 +1,22 @@
 IPASS 2018 - 2019 Documentatie
 =============================================
-Welkom allemaal!
-Hieronder vind u de documentatie van het IPASS eindproject.
+Hieronder vindt u de documentatie van het IPASS eindproject.
 
-In de package `ipass` zijn de bestanden `bereken` en `convertCSV`
-met de documentatie van hun functies te vinden.
+Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
+Alle code bevind zich in `ipass/`. Dit is de libary.
+De code maakt gebruik van en genereerd data in `data/`.
+De applicatie waarmee de functionaliteit aan de hand van verschillende
+casussen wordt getoont is te vinden in `app.ipynb`.
 
-In de package `ipass/plot` zijn de bestanden `norm_verd` en `plot`
-met de documentatie van hun functies te vinden.
+De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
+gegenereerd, deze zijn te vinden in `docs/build/html/index.html`
+De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentatie in
+EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
-Copyright Thijs van den Berg 2019
+De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met: `pip install -r requirements.txt `
+
+© Thijs van den Berg 2019
+1740697
 
 
 Inhoud:

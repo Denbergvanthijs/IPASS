@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
+  <head>
+    <meta charset="utf-8" />
+    <title>Package: ipass.plot</title>
+    <link rel="stylesheet" href="_static/epub.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
+  </head><body>
+
+    <div class="document">
+      <div class="documentwrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="package-ipass-plot">
+<h1>Package: ipass.plot</h1>
+<div class="section" id="module-ipass.plot.norm_verd">
+<span id="module-ipass-plot-norm-verd"></span><h2>Module: ipass.plot.norm_verd</h2>
+<dl class="function">
+<dt id="ipass.plot.norm_verd.normale_verdeling">
+<code class="descclassname">ipass.plot.norm_verd.</code><code class="descname">normale_verdeling</code><span class="sig-paren">(</span><em>mu: float</em>, <em>sigma: float</em>, <em>mid_afstand: float</em>, <em>labels: tuple</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Plot-code afgeleid van: Thijs van den Berg (Jun. 2019)
+<a class="reference external" href="https://github.com/Denbergvanthijs/AC-opdrachten/">https://github.com/Denbergvanthijs/AC-opdrachten/</a></p>
+<p>Mu en sigma zijn vaak 0 resp. 1
+mid_afstand is de hemelsbrede afstand naar het middelpunt vanaf een punt</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mu</strong> – gemiddelde van de normale verdelingen</p></li>
+<li><p><strong>sigma</strong> – standaard deviatie van de normale verdelingen</p></li>
+<li><p><strong>mid_afstand</strong> – Afstand van de twee punten tot het middelpunt</p></li>
+<li><p><strong>labels</strong> – Lijst van twee strings, labels[0] is de naam van eerste verdeling, idem voor labels[1]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plot met twee normale verdelingen. In de titel het percentage dat zij overlappen
+en de meegegeven afstand tot het middelpunt.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.plot.norm_verd.normale_verdeling_compleet">
+<code class="descclassname">ipass.plot.norm_verd.</code><code class="descname">normale_verdeling_compleet</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Plot de normale verdelingen van alle mogelijke combinaties van punten.
+Een zichtbare Voronoi is niet nodig om berekeningen uit te voeren.
+De voronoi wordt echter wel gebruikt om de punten te berekenen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Alle mogelijke plots met twee normale verdelingen.
+In de titel het percentage dat zij overlappen
+en de meegegeven afstand tot het middelpunt.
+Normale verdelingen die minder dan 0.00% overlappen worden niet geplot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ipass.plot.plot">
+<span id="module-ipass-plot-plot"></span><h2>Module: ipass.plot.plot</h2>
+<dl class="function">
+<dt id="ipass.plot.plot.kaart">
+<code class="descclassname">ipass.plot.plot.</code><code class="descname">kaart</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>terrein: bool = True</em>, <em>sep: str = '</em>, <em>'</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Maakt een kaart gebaseerd op de coordinaten in een CSV-bestand.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_path</strong> – Pad naar het te plotten CSV-bestand</p></li>
+<li><p><strong>terrein</strong> – optioneel, zorgt voor een grafische achtergrond van de plot. Kan enkele seconden langer duren.</p></li>
+<li><p><strong>sep</strong> – optioneel, seperator van het CSV-bestand</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Een kaart met de geplotte punten, al dan niet met een ‘terrein-achtergrond’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.plot.plot.verloop">
+<code class="descclassname">ipass.plot.plot.</code><code class="descname">verloop</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>vector: numpy.ndarray</em>, <em>perioden: int</em>, <em>mu: float = 0</em>, <em>sigma: float = 1</em>, <em>legenda: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Plot het verloop van een verspreiding waarbij het begin van de infectie
+in de vector wordt aangegeven. Verspreiding op tijdstip t gaat
+volgende de formule v·M^t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</p></li>
+<li><p><strong>vector</strong> – Numpy array van n bij 1. Bevat per cell 0 of 1.
+Iedere cell waar 1 staat, begint de infectie.</p></li>
+<li><p><strong>perioden</strong> – Het aantal perioden dat het verloop berekend en getoont moet worden.</p></li>
+<li><p><strong>mu</strong> – gemiddelde van de normale verdelingen</p></li>
+<li><p><strong>sigma</strong> – standaard deviatie van de normale verdelingen</p></li>
+<li><p><strong>legenda</strong> – optioneel, toont de legenda.
+Aangeraden om uit te zetten als er heel veel punten dienen te worden geplot</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plot met het verloop van de infectiegraad/verspreiding van de punten</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.plot.plot.voronoi">
+<code class="descclassname">ipass.plot.plot.</code><code class="descname">voronoi</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>mu: float</em>, <em>sigma: float</em>, <em>tekst: bool = True</em>, <em>ellipse: bool = True</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dd><p>Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten.
+Bij ieder middelpunt is eventueel het %-overlap te zien en het daarbijbehordende bereik.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</p></li>
+<li><p><strong>mu</strong> – gemiddelde van de normale verdelingen</p></li>
+<li><p><strong>sigma</strong> – standaard deviatie van de normale verdelingen</p></li>
+<li><p><strong>tekst</strong> – keuze of de percentages zichtbaar zijn in de plot.
+Aan te raden om uit te zetten bij veel punten.</p></li>
+<li><p><strong>ellipse</strong> – keuze of de ellipsen zichtbaar zijn in de plot.
+Aan te raden om uit te zetten bij veel punten</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Plot met een Voronoi-diagram en stippen op de coordinaten meegegeven in ‘punten’</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+  </body>
+</html>
