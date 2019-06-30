@@ -1,18 +1,22 @@
 # IPASS
 <img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
 
-
+### Repository
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
 Alle code bevind zich in `ipass/`. Dit is de libary.
 De code maakt gebruik van en genereerd data in `data/`.
 De applicatie waarmee de functionaliteit aan de hand van verschillende
 casussen wordt getoont is te vinden in `app.ipynb`. 
 
+### Documentatie
 De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
 gegenereerd, deze zijn te vinden in `docs/build/html/index.html`
 De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentatie in
 EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
+### Installatie
+De libary is te installeren via Pypi met pip: `pip install IPASS-repo-denbergvanthijs`.
+Vervolgens kan de repository worden geimporteerd als `ipass`  
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:   
 `pip install -r requirements.txt `
 

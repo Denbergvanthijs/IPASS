@@ -24,9 +24,9 @@ copyright = '2019, Thijs van den Berg'
 author = 'Thijs van den Berg'
 
 # The short X.Y version
-version = '1.1'
+version = '2019.06'
 # The full version, including alpha/beta/rc tags
-release = '1.1.0'
+release = '2019.06.30'
 
 
 # -- General configuration ---------------------------------------------------
