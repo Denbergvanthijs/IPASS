@@ -16,6 +16,8 @@ EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:   
 `pip install -r requirements.txt `
 
+Om de code te testen kan het commando `pytest` worden uitgevoerd. Helaas zijn plots niet te testen.
+
 © Thijs van den Berg 2019    
 1740697
 
