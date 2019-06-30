@@ -1,6 +1,5 @@
 # IPASS
-<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing">
-<img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
+<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
 
 
 © Thijs van den Berg 2019  
