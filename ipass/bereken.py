@@ -120,3 +120,18 @@ def middelpunt_afstanden(punten: np.ndarray) -> list:
 
         afstanden.append(mid_afstand)
     return afstanden
+
+
+def matrix_maal_matrix(m1: np.ndarray, m2: np.ndarray) -> np.ndarray:
+    """Vermenigvuldigd matrix m maal n en zet alle waardes boven 1, op 1.
+    Dit aangezien de 'infectiegraad' nooit meer dan 100% kan zijn.
+
+    :param m1: matrix van n bij n
+    :param m2: matrix van n bij n
+    :return: matrix van n bij n, geen enkele waarde meer dan 1
+    """
+    if not isinstance(m1, np.ndarray) or not isinstance(m2, np.ndarray):
+        raise ValueError("Verkeerde waardes meegegeven als argumenten")
+
+    matrix = np.matmul(m1, m2)
+    return np.where(matrix > 1, 1, matrix)

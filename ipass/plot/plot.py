@@ -7,7 +7,6 @@ import pandas as pd
 from cartopy.io.img_tiles import Stamen
 from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
 from matplotlib.patches import Ellipse
-from numpy.linalg import matrix_power
 from scipy.spatial import Voronoi
 from scipy.spatial import voronoi_plot_2d as SPvorPlot
 
@@ -97,15 +96,18 @@ def verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0
 
     print("Even geduld a.u.b, dit kan even duren...")
 
-    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    # plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
     matrix_percentages = bereken.perc_overlap_matrix(punten, mu, sigma)
     matrix_verloop = []
 
     for periode in range(perioden + 1):
         # Reken voor iedere periode het matrix vector dotproduct uit
-        matrix_vec = vector.dot(matrix_power(matrix_percentages, periode))
-        matrix_verloop.append(np.where(matrix_vec > 1, 1, matrix_vec))
-
+        i = 0
+        matrix = matrix_percentages.copy()
+        while i != periode:
+            matrix = bereken.matrix_maal_matrix(matrix, matrix_percentages)
+            i += 1
+        matrix_verloop.append(vector.dot(matrix))
     matrix_verloop = np.vstack(matrix_verloop)  # Maakt van een lijst met lijsten een numpy array
 
     for i, periode in enumerate(matrix_verloop.T):
@@ -120,6 +122,7 @@ def verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0
     plt.ylim(0, 1.1)
     plt.title(f"Aantal punten: {punten.shape[0]}")
     plt.tight_layout()  # Alles past zo beter op de grafiek
+    plt.savefig('verloop.eps', format='eps', dpi=1000)
     plt.show()
 
 
@@ -136,7 +139,7 @@ def kaart(file_path: str, terrein: bool = True, sep: str = ",") -> None:
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 
     print("Kaart aan het maken. \nEven geduld a.u.b, dit kan even duren...")
-    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    # plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
 
     coordinaten = pd.read_csv(file_path, sep=sep)
     coordinaten = coordinaten.loc[(coordinaten['latitude'] < 53.5) & (coordinaten['latitude'] > 50.7) &
@@ -159,4 +162,5 @@ def kaart(file_path: str, terrein: bool = True, sep: str = ",") -> None:
     for lat, long in coordinaten:  # Stippen tekenen
         ax.plot(long, lat, marker='o', markersize=3, color="green", transform=ccrs.PlateCarree())
 
+    plt.savefig('kaart.eps', format='eps', dpi=1000)
     plt.show()
