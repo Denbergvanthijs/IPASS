@@ -16,9 +16,11 @@ EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
 ### Installatie
 De libary is te installeren via Pypi met pip: `pip install IPASS-repo-denbergvanthijs`.
-Vervolgens kan de repository worden geimporteerd als `ipass`  
+Vervolgens kan de repository worden geimporteerd als `ipass`.  
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:   
-`pip install -r requirements.txt `
+`pip install -r requirements.txt `.
+Het is aanbevolen om met een Anaconda omgeving te werken zodat de `GEOS` uitbreiding
+in C goed wordt geinstalleerd. Deze komt standaard met Anaconda wanneer cartopy wordt geinstalleerd.
 
 Om de code te testen kan het commando `pytest` worden uitgevoerd. Helaas zijn plots niet te testen.
 
