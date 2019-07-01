@@ -135,3 +135,65 @@ def matrix_maal_matrix(m1: np.ndarray, m2: np.ndarray) -> np.ndarray:
 
     matrix = np.matmul(m1, m2)
     return np.where(matrix > 1, 1, matrix)
+
+
+def perc_volledige_infectie(matrix_verloop: np.ndarray) -> tuple:
+    """Berekend voor ieder punt in punten_matrix na hoeveel periodes deze volledig was geinfecteerd.
+    Berekend vervolgens op hoeveel procent van de totale duur dat was.
+    Iedere rij staat voor een punt. De lengte van de rij voor het aantal periodes.
+
+    :param matrix_verloop: matrix van n bij m. n-aantal punten en m-aantal periodes
+
+    :return: tuple met op hoeveel procent ieder punt volledig was geinfecteerd
+    """
+    if not isinstance(matrix_verloop, np.ndarray):
+        raise ValueError("Verkeerde waardes meegegeven als argumenten")
+
+    lijst = []
+
+    for punt in matrix_verloop:
+        voll_inf = np.where(punt == 1)  # Alle waardes waarbij het punt volledig is geinfecteerd
+
+        try:
+            lijst.append(voll_inf[0][0])  # Eerste waarde waarbij het punt volledig is geinfecteerd
+        except IndexError:  # Als het punt nooit volledig is geinfecteerd
+            if lijst:  # Als er al eerdere waardes zijn gegenereerd
+                lijst.append(max(lijst))
+            else:  # Als het de eerste waarde is
+                lijst.append(1)
+
+    return tuple((1 / max(lijst) * punt for punt in lijst))
+
+
+def matrix_vec_verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0,
+                       sigma: float = 1) -> np.ndarray:
+    """Berekend voor iedere stap in de tijd de matrix uit. Iedere stap wordt opgeslagen en vormen samen
+    een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.
+
+    :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
+    :param vector: Numpy array van n bij 1. Bevat per cell 0 of 1. Iedere cell waar 1 staat, begint de infectie.
+    :param perioden:  Het aantal perioden dat het verloop berekend en getoont moet worden.
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+
+    :return: n bij m matrix met het verloop. Kan worden geplot
+    """
+    if not isinstance(punten, np.ndarray) or not isinstance(vector, np.ndarray) or not isinstance(perioden, int) \
+            or not isinstance(mu, (float, int)) or not isinstance(sigma, (float, int)):
+        raise ValueError("Verkeerde waardes meegegeven als argumenten")
+
+    if punten.shape[0] != vector.shape[0]:
+        raise ValueError("Vector en punten moeten even lang zijn.")
+
+    matrix_verloop = []
+    matrix_percentages = perc_overlap_matrix(punten, mu, sigma)
+
+    for periode in range(perioden + 1):  # Reken voor iedere periode het matrix vector dotproduct uit
+        i = 0
+        matrix = matrix_percentages.copy()
+        while i != periode:
+            matrix = matrix_maal_matrix(matrix, matrix_percentages)
+            i += 1
+        matrix_verloop.append(vector.dot(matrix))
+
+    return np.vstack(matrix_verloop).T  # Maakt van een lijst met lijsten een numpy array

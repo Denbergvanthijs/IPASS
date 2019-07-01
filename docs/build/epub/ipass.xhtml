@@ -68,6 +68,45 @@ Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepal
 </dd></dl>
 
 <dl class="function">
+<dt id="ipass.bereken.matrix_maal_matrix">
+<code class="descclassname">ipass.bereken.</code><code class="descname">matrix_maal_matrix</code><span class="sig-paren">(</span><em>m1: numpy.ndarray</em>, <em>m2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dd><p>Vermenigvuldigd matrix m maal n en zet alle waardes boven 1, op 1.
+Dit aangezien de ‘infectiegraad’ nooit meer dan 100% kan zijn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m1</strong> – matrix van n bij n</p></li>
+<li><p><strong>m2</strong> – matrix van n bij n</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>matrix van n bij n, geen enkele waarde meer dan 1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.matrix_vec_verloop">
+<code class="descclassname">ipass.bereken.</code><code class="descname">matrix_vec_verloop</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>vector: numpy.ndarray</em>, <em>perioden: int</em>, <em>mu: float = 0</em>, <em>sigma: float = 1</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dd><p>Berekend voor iedere stap in de tijd de matrix uit. Iedere stap wordt opgeslagen en vormen samen
+een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>punten</strong> – Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.</p></li>
+<li><p><strong>vector</strong> – Numpy array van n bij 1. Bevat per cell 0 of 1. Iedere cell waar 1 staat, begint de infectie.</p></li>
+<li><p><strong>perioden</strong> – Het aantal perioden dat het verloop berekend en getoont moet worden.</p></li>
+<li><p><strong>mu</strong> – gemiddelde van de normale verdelingen</p></li>
+<li><p><strong>sigma</strong> – standaard deviatie van de normale verdelingen</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>n bij m matrix met het verloop. Kan worden geplot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="ipass.bereken.middelpunt_afstanden">
 <code class="descclassname">ipass.bereken.</code><code class="descname">middelpunt_afstanden</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; list</dt>
 <dd><p>Berekend de afstand tot het middelpunt voor iedere combinatie van twee punten.
@@ -121,6 +160,22 @@ In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>matrix van n bij n met alle percentages dat de punten overlappen</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="ipass.bereken.perc_volledige_infectie">
+<code class="descclassname">ipass.bereken.</code><code class="descname">perc_volledige_infectie</code><span class="sig-paren">(</span><em>matrix_verloop: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; tuple</dt>
+<dd><p>Berekend voor ieder punt in punten_matrix na hoeveel periodes deze volledig was geinfecteerd.
+Berekend vervolgens op hoeveel procent van de totale duur dat was.
+Iedere rij staat voor een punt. De lengte van de rij voor het aantal periodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>matrix_verloop</strong> – matrix van n bij m. n-aantal punten en m-aantal periodes</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tuple met op hoeveel procent ieder punt volledig was geinfecteerd</p>
 </dd>
 </dl>
 </dd></dl>
