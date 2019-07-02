@@ -11,7 +11,7 @@ from matplotlib.patches import Ellipse
 from scipy.spatial import Voronoi
 from scipy.spatial import voronoi_plot_2d as SPvorPlot
 
-from ipass import bereken
+from plaguepy import bereken
 
 style.use('seaborn')
 

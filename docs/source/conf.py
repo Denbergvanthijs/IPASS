@@ -14,19 +14,19 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath("C:/Users/denbe/PycharmProjects/IPASS-repo/"))
+sys.path.insert(0, os.path.abspath("C:/Users/denbe/PycharmProjects/plaguepy/"))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'IPASS'
+project = 'PlaguePy'
 copyright = '2019, Thijs van den Berg'
 author = 'Thijs van den Berg'
 
 # The short X.Y version
 version = '2019.07'
 # The full version, including alpha/beta/rc tags
-release = '2019.07.01.3'
+release = '2019.07.02.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -103,7 +103,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'IPASS2018-2019doc'
+htmlhelp_basename = 'plaguepydoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -130,7 +130,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'IPASS2018-2019.tex', 'IPASS 2018 - 2019 Documentatie',
+    (master_doc, 'plaguepy.tex', 'PlaguePy Documentatie',
      'Thijs van den Berg', 'manual'),
 ]
 
@@ -140,7 +140,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ipass2018-2019', 'IPASS 2018 - 2019 Documentatie',
+    (master_doc, 'plaguepy', 'PlaguePy Documentatie',
      [author], 1)
 ]
 
@@ -151,8 +151,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'IPASS2018-2019', 'IPASS 2018 - 2019 Documentatie',
-     author, 'IPASS2018-2019', 'One line description of project.',
+    (master_doc, 'plaguepy', 'PlaguePy Documentatie',
+     author, 'plaguepy', 'Ziekteverspreiding gevisualiseerd',
      'Miscellaneous'),
 ]
 

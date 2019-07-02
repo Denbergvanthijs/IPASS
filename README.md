@@ -1,4 +1,4 @@
-# IPASS
+# PlaguePY
 <img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0"> <a href='https://ipass-repo.readthedocs.io/nl/latest/?badge=latest'><img src='https://readthedocs.org/projects/ipass-repo/badge/?version=latest' alt='Documentation Status' /></a>
 
 ### Repository
@@ -16,8 +16,8 @@ De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentati
 EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
 ### Installatie
-De libary is te installeren via Pypi met pip: `pip install IPASS-repo-denbergvanthijs`.
-Vervolgens kan de repository worden geimporteerd als `ipass`.  
+De libary is te installeren via Pypi met pip: `pip install plaguepy`.
+Vervolgens kan de repository worden geimporteerd als `plaguepy`.  
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:   
 `pip install -r requirements.txt `.
 Het is aanbevolen om met een Anaconda omgeving te werken zodat de `GEOS` uitbreiding

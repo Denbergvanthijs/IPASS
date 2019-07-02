@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:epub="http://www.idpf.org/2007/ops">
   <head>
     <meta charset="utf-8" />
-    <title>Package: ipass</title>
+    <title>Package: plaguepy</title>
     <link rel="stylesheet" href="_static/epub.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" /> 
   </head><body>
@@ -12,25 +12,25 @@
       <div class="documentwrapper">
           <div class="body" role="main">
             
-  <div class="section" id="package-ipass">
-<h1>Package: ipass</h1>
+  <div class="section" id="package-plaguepy">
+<h1>Package: plaguepy</h1>
 <div class="section" id="subpackages">
 <h2>Subpackages</h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ipass.plot.xhtml">Package: ipass.plot</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ipass.plot.xhtml#module-ipass.plot.norm_verd">Module: ipass.plot.norm_verd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ipass.plot.xhtml#module-ipass.plot.plot">Module: ipass.plot.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plaguepy.plot.xhtml">Package: plaguepy.plot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plaguepy.plot.xhtml#module-plaguepy.plot.norm_verd">Module: plaguepy.plot.norm_verd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plaguepy.plot.xhtml#module-plaguepy.plot.plot">Module: plaguepy.plot.plot</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div class="section" id="module-ipass.bereken">
-<span id="module-ipass-bereken"></span><h2>Module: ipass.bereken</h2>
+<div class="section" id="module-plaguepy.bereken">
+<span id="module-plaguepy-bereken"></span><h2>Module: plaguepy.bereken</h2>
 <dl class="function">
-<dt id="ipass.bereken.grens">
-<code class="descclassname">ipass.bereken.</code><code class="descname">grens</code><span class="sig-paren">(</span><em>grens_perc: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
+<dt id="plaguepy.bereken.grens">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">grens</code><span class="sig-paren">(</span><em>grens_perc: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
 <dd><p>Berekend het aantal standaard deviaties dat nodig is om op een bepaalde cumulatieve kans te komen.
 Dezelfde functie als invNorm op de Texas Instruments grafische rekenmachines.
 0.00 &lt; grens &lt; 1.00
@@ -50,8 +50,8 @@ Kan gebruikt worden om de hoogte van de Ellipse in Voronoi-diagrammen te bepalen
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.helling">
-<code class="descclassname">ipass.bereken.</code><code class="descname">helling</code><span class="sig-paren">(</span><em>punt1: numpy.ndarray</em>, <em>punt2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; float</dt>
+<dt id="plaguepy.bereken.helling">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">helling</code><span class="sig-paren">(</span><em>punt1: numpy.ndarray</em>, <em>punt2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; float</dt>
 <dd><p>Berekend de helling in graden tussen twee coordinaten.
 Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen.</p>
 <dl class="field-list simple">
@@ -68,8 +68,8 @@ Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepal
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.matrix_maal_matrix">
-<code class="descclassname">ipass.bereken.</code><code class="descname">matrix_maal_matrix</code><span class="sig-paren">(</span><em>m1: numpy.ndarray</em>, <em>m2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dt id="plaguepy.bereken.matrix_maal_matrix">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">matrix_maal_matrix</code><span class="sig-paren">(</span><em>m1: numpy.ndarray</em>, <em>m2: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
 <dd><p>Vermenigvuldigd matrix m maal n en zet alle waardes boven 1, op 1.
 Dit aangezien de ‘infectiegraad’ nooit meer dan 100% kan zijn.</p>
 <dl class="field-list simple">
@@ -86,8 +86,8 @@ Dit aangezien de ‘infectiegraad’ nooit meer dan 100% kan zijn.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.matrix_vec_verloop">
-<code class="descclassname">ipass.bereken.</code><code class="descname">matrix_vec_verloop</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>vector: numpy.ndarray</em>, <em>perioden: int</em>, <em>mu: float = 0</em>, <em>sigma: float = 1</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dt id="plaguepy.bereken.matrix_vec_verloop">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">matrix_vec_verloop</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>vector: numpy.ndarray</em>, <em>perioden: int</em>, <em>mu: float = 0</em>, <em>sigma: float = 1</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
 <dd><p>Berekend voor iedere stap in de tijd de matrix uit. Iedere stap wordt opgeslagen en vormen samen
 een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.</p>
 <dl class="field-list simple">
@@ -107,8 +107,8 @@ een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.middelpunt_afstanden">
-<code class="descclassname">ipass.bereken.</code><code class="descname">middelpunt_afstanden</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; list</dt>
+<dt id="plaguepy.bereken.middelpunt_afstanden">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">middelpunt_afstanden</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; list</dt>
 <dd><p>Berekend de afstand tot het middelpunt voor iedere combinatie van twee punten.
 Input is een np.array() van N bij 2.
 Gebaseerd op: <a class="reference external" href="https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py">https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py</a></p>
@@ -123,8 +123,8 @@ Gebaseerd op: <a class="reference external" href="https://github.com/scipy/scipy
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.perc_overlap">
-<code class="descclassname">ipass.bereken.</code><code class="descname">perc_overlap</code><span class="sig-paren">(</span><em>mid_afstand: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
+<dt id="plaguepy.bereken.perc_overlap">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">perc_overlap</code><span class="sig-paren">(</span><em>mid_afstand: float</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
 <dd><dl>
 <dt>Berekend het percentage overlap tussen twee punten.</dt>
 <dd><p>norm.cdf(-n) berekend de kans tot n SD.
@@ -148,8 +148,8 @@ In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.perc_overlap_matrix">
-<code class="descclassname">ipass.bereken.</code><code class="descname">perc_overlap_matrix</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dt id="plaguepy.bereken.perc_overlap_matrix">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">perc_overlap_matrix</code><span class="sig-paren">(</span><em>punten: numpy.ndarray</em>, <em>mu: float</em>, <em>sigma: float</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
 <dd><dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -165,8 +165,8 @@ In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.bereken.perc_volledige_infectie">
-<code class="descclassname">ipass.bereken.</code><code class="descname">perc_volledige_infectie</code><span class="sig-paren">(</span><em>matrix_verloop: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; tuple</dt>
+<dt id="plaguepy.bereken.perc_volledige_infectie">
+<code class="descclassname">plaguepy.bereken.</code><code class="descname">perc_volledige_infectie</code><span class="sig-paren">(</span><em>matrix_verloop: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; tuple</dt>
 <dd><p>Berekend voor ieder punt in punten_matrix na hoeveel periodes deze volledig was geinfecteerd.
 Berekend vervolgens op hoeveel procent van de totale duur dat was.
 Iedere rij staat voor een punt. De lengte van de rij voor het aantal periodes.</p>
@@ -181,11 +181,11 @@ Iedere rij staat voor een punt. De lengte van de rij voor het aantal periodes.</
 </dd></dl>
 
 </div>
-<div class="section" id="module-ipass.convertCSV">
-<span id="module-ipass-convertcsv"></span><h2>Module: ipass.convertCSV</h2>
+<div class="section" id="module-plaguepy.convertCSV">
+<span id="module-plaguepy-convertcsv"></span><h2>Module: plaguepy.convertCSV</h2>
 <dl class="function">
-<dt id="ipass.convertCSV.coord2coord">
-<code class="descclassname">ipass.convertCSV.</code><code class="descname">coord2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>lat_header: str</em>, <em>long_header: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dt id="plaguepy.convertCSV.coord2coord">
+<code class="descclassname">plaguepy.convertCSV.</code><code class="descname">coord2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>lat_header: str</em>, <em>long_header: str</em><span class="sig-paren">)</span> &#x2192; None</dt>
 <dd><p>Haalt uit een CSV-bestand de latitude- en longitudekolom.
 De gebruiker dient de namen van de kolommen waarde latitude en logitude
 zijn opgeslagen op te geven.
@@ -206,8 +206,8 @@ Deze kolommen worden opgeslagen in een nieuw bestand met de prefix <cite>geo_</c
 </dd></dl>
 
 <dl class="function">
-<dt id="ipass.convertCSV.straat2coord">
-<code class="descclassname">ipass.convertCSV.</code><code class="descname">straat2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>woonplaats: str</em>, <em>woonplaats_header: str</em>, <em>adres_header: str</em>, <em>sep: str = ';'</em><span class="sig-paren">)</span> &#x2192; None</dt>
+<dt id="plaguepy.convertCSV.straat2coord">
+<code class="descclassname">plaguepy.convertCSV.</code><code class="descname">straat2coord</code><span class="sig-paren">(</span><em>file_path: str</em>, <em>woonplaats: str</em>, <em>woonplaats_header: str</em>, <em>adres_header: str</em>, <em>sep: str = ';'</em><span class="sig-paren">)</span> &#x2192; None</dt>
 <dd><p>Berekend aan de hand van een CSV-bestand de breedte- en hoogtegraad.
 Resultaten worden opgeslagen in een nieuw CSV-bestand <cite>data/geoDataKDV.csv</cite>.
 Als input wordt om een woonplaats gevraagd. Alle punten die aan de waarde ‘woonplaats voldoen’

@@ -7,31 +7,31 @@
     <meta name="dtb:maxPageNumber" content="0"/>
   </head>
   <docTitle>
-    <text>IPASS</text>
+    <text>PlaguePy</text>
   </docTitle>
   <navMap>    
     <navPoint id="navPoint1" playOrder="1">
       <navLabel>
-        <text>IPASS 2018 - 2019 Documentatie</text>
+        <text>PlaguePy</text>
       </navLabel>
       <content src="index.xhtml" />  
     </navPoint>
     <navPoint id="navPoint2" playOrder="2">
       <navLabel>
-        <text>Package: ipass</text>
+        <text>Package: plaguepy</text>
       </navLabel>
-      <content src="ipass.xhtml" />  
+      <content src="plaguepy.xhtml" />  
       <navPoint id="navPoint3" playOrder="2">
         <navLabel>
-          <text>Package: ipass</text>
+          <text>Package: plaguepy</text>
         </navLabel>
-        <content src="ipass.xhtml" />  
+        <content src="plaguepy.xhtml" />  
       </navPoint>
       <navPoint id="navPoint4" playOrder="3">
         <navLabel>
-          <text>Package: ipass.plot</text>
+          <text>Package: plaguepy.plot</text>
         </navLabel>
-        <content src="ipass.plot.xhtml" />  
+        <content src="plaguepy.plot.xhtml" />  
       </navPoint>
     </navPoint>
   </navMap>

@@ -4,14 +4,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='IPASS-repo-denbergvanthijs',
-    version="2019.07.1.3",
+    name='plaguepy',
+    version="2019.07.2.1",
     author="Thijs van den Berg",
     author_email="denbergvanthijs@gmail.com",
-    description='IPASS eindproject 2018 - 2019',
+    description='Ziekteverspreiding gevisualiseerd',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/denbergvanthijs/IPASS-repo",
+    url="https://github.com/denbergvanthijs/plaguepy",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

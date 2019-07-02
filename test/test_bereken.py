@@ -1,7 +1,7 @@
 import numpy as np
 import pytest
 
-from ipass import bereken
+from plaguepy import bereken
 
 
 def test_perc_overlap():

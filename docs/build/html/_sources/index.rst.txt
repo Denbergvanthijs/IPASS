@@ -1,4 +1,4 @@
-IPASS 2018 - 2019 Documentatie
+PlaguePy
 =============================================
 Hieronder vindt u de documentatie van het IPASS eindproject.
 
@@ -13,14 +13,15 @@ casussen wordt getoont is te vinden in `app.ipynb`.
 Documentatie
 ----------------
 De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
-gegenereerd, deze zijn te vinden in `docs/build/html/index.html`
+gegenereerd, deze zijn te vinden in `docs/build/html/index.html`. Via ReadTheDocs.io is de
+laatste versie van de documentatie te zien via https://ipass-repo.readthedocs.io/nl/latest/.
 De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentatie in
 EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
 Installatie
 --------------
-De libary is te installeren via Pypi met pip: `pip install IPASS-repo-denbergvanthijs`.
-Vervolgens kan de repository worden geimporteerd als `ipass`.
+De libary is te installeren via Pypi met pip: `pip install plaguepy`.
+Vervolgens kan de repository worden geimporteerd als `plaguepy`.
 De benodigde libary's zijn te vinden in `requirements.txt` en te installeren met:
 `pip install -r requirements.txt `.
 Het is aanbevolen om met een Anaconda omgeving te werken zodat de `GEOS` uitbreiding
@@ -29,13 +30,12 @@ in C goed wordt geinstalleerd. Deze komt standaard met Anaconda wanneer cartopy 
 Om de code te testen kan het commando `pytest` worden uitgevoerd. Helaas zijn plots niet te testen.
 
 © Thijs van den Berg 2019
-
 1740697
 
 
-Inhoud:
-==========
+Inhoud
+------------
 .. toctree::
    :titlesonly:
 
-   ipass
+   plaguepy

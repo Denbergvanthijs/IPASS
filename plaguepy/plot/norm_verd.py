@@ -4,7 +4,7 @@ from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
 from scipy.spatial import Voronoi
 from scipy.stats import norm  # Om de lijn van de normale verdeling te tekenen. Getallen zijn zelf berekend.
 
-from ipass import bereken
+from plaguepy import bereken
 
 style.use('seaborn')
 
