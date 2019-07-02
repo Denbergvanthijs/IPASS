@@ -26,7 +26,7 @@ author = 'Thijs van den Berg'
 # The short X.Y version
 version = '2019.07'
 # The full version, including alpha/beta/rc tags
-release = '2019.07.02.1'
+release = '2019.07.02.2'
 
 
 # -- General configuration ---------------------------------------------------
