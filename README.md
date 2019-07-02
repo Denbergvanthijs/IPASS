@@ -3,7 +3,7 @@
 
 ### Repository
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
-Alle code bevind zich in `ipass/`. Dit is de libary.
+Alle code bevind zich in `plaguepy/`. Dit is de libary.
 De code maakt gebruik van en genereerd data in `data/`.
 De applicatie waarmee de functionaliteit aan de hand van verschillende
 casussen wordt getoont is te vinden in `app.ipynb`. 
