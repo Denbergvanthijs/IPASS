@@ -1,5 +1,5 @@
 # IPASS
-<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
+<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0"> <a href='https://ipass-repo.readthedocs.io/nl/latest/?badge=latest'><img src='https://readthedocs.org/projects/ipass-repo/badge/?version=latest' alt='Documentation Status' /></a>
 
 ### Repository
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
@@ -10,7 +10,8 @@ casussen wordt getoont is te vinden in `app.ipynb`.
 
 ### Documentatie
 De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
-gegenereerd, deze zijn te vinden in `docs/build/html/index.html`
+gegenereerd, deze zijn te vinden in `docs/build/html/index.html`. Via ReadTheDocs.io is de
+laatste versie van de documentatie te zien via [deze link](https://ipass-repo.readthedocs.io/nl/latest/).  
 De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentatie in
 EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
