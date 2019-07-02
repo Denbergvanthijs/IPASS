@@ -11,7 +11,7 @@ casussen wordt getoont is te vinden in `app.ipynb`.
 ### Documentatie
 De documentatie is te vinden in iedere functie. Tevens zijn er HTML-pagina's
 gegenereerd, deze zijn te vinden in `docs/build/html/index.html`. Via ReadTheDocs.io is de
-laatste versie van de documentatie te zien via [deze link](https://plaguepy.readthedocs.io/nl/latest/).  
+laatste versie van de documentatie te zien via [deze link](https://plaguepy.readthedocs.io/).  
 De documentatie kan worden bijgewerkt met `make html`. Tevens kan de documentatie in
 EPUB- of LaTeX-vorm worden gegenereerd met `make epub` resp. `make latex`.
 
