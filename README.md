@@ -1,5 +1,5 @@
 # PlaguePY
-<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0"> <a href='https://plaguepy.readthedocs.io/nl/latest/?badge=latest'> <img src='https://readthedocs.org/projects/plaguepy/badge/?version=latest' alt='Documentation Status' /></a>
+<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0"> <a href='https://plaguepy.readthedocs.io/'> <img src='https://readthedocs.org/projects/plaguepy/badge/?version=latest' alt='Documentation Status' /></a>
 
 ### Repository
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project.
