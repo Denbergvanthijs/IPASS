@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='plaguepy',
-    version="2019.07.2.2",
+    name="plaguepy",
+    version="2020.04.12.1",
     author="Thijs van den Berg",
     author_email="denbergvanthijs@gmail.com",
     description='Ziekteverspreiding gevisualiseerd',
