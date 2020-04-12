@@ -1,8 +1,6 @@
 # PlaguePY
 
-<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing">
-<img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0">
-<a href='https://plaguepy.readthedocs.io/'> <img src='https://readthedocs.org/projects/plaguepy/badge/?version=latest' alt='Documentation Status' /></a>
+<img src="https://img.shields.io/badge/Build-Passing-brightgreen.svg" alt="Build passing"> <img src="https://img.shields.io/badge/Licence-Apache%202.0-blue.svg" alt="Licence Apache 2.0"> <a href='https://plaguepy.readthedocs.io/'> <img src='https://readthedocs.org/projects/plaguepy/badge/?version=latest' alt='Documentation Status' /></a>
 
 Deze repository bevat alle code, documentatie en de applicatie van het IPASS-project. Alle code bevind zich in `plaguepy/`. Dit is de library. De code maakt gebruik van en genereerd data in `data/`. De applicatie waarmee de functionaliteit aan de hand van verschillende casussen wordt getoont is te vinden in `app.ipynb`.
 
