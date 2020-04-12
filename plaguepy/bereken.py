@@ -1,4 +1,5 @@
 import math
+
 import numpy as np  # Om data als arrays op te kunnen slaan en de normale verdeling te kunnen tekenen
 import pandas as pd
 from scipy.spatial import Voronoi
@@ -7,16 +8,15 @@ from scipy.stats import norm  # Om de lijn van de normale verdeling te tekenen. 
 
 def perc_overlap(mid_afstand: float, mu: float, sigma: float) -> float:
     """Berekend het percentage overlap tussen twee punten.
-        norm.cdf(-n) berekend de kans tot n SD.
-        In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande
+    norm.cdf(-n) berekend de kans tot n SD.
+    In de wiskunde wordt vaak (1 - norm.cdf(n)) i.p.v. bovenstaande
 
-        Door deze waarde maal twee te doen hebben we de totale overlapping.
+    Door deze waarde maal twee te doen hebben we de totale overlapping.
 
-       :param mid_afstand: Afstand van de twee punten tot het middelpunt
-       :param mu: gemiddelde van de normale verdelingen
-       :param sigma: standaard deviatie van de normale verdelingen
-       :returns: het totale percentage dat de twee normale verdelingen elkaar overlappen.
-                 0 < perc < 1
+    :param mid_afstand: Afstand van de twee punten tot het middelpunt
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+    :returns: het totale percentage dat de twee normale verdelingen elkaar overlappen. 0 < perc < 1
     """
     if not isinstance(mid_afstand, (int, float)) or not isinstance(mu, (int, float)) \
             or not isinstance(sigma, (int, float)):
@@ -57,14 +57,14 @@ def perc_overlap_matrix(punten: np.ndarray, mu: float, sigma: float) -> np.ndarr
 
 def grens(grens_perc: float, mu: float, sigma: float) -> float:
     """Berekend het aantal standaard deviaties dat nodig is om op een bepaalde cumulatieve kans te komen.
-       Dezelfde functie als invNorm op de Texas Instruments grafische rekenmachines.
-       0.00 < grens < 1.00
-       Kan gebruikt worden om de hoogte van de Ellipse in Voronoi-diagrammen te bepalen
+    Dezelfde functie als invNorm op de Texas Instruments grafische rekenmachines.
+    0.00 < grens < 1.00
+    Kan gebruikt worden om de hoogte van de Ellipse in Voronoi-diagrammen te bepalen
 
-       :param grens_perc: getal tussen 0 en 1. Stel grens_waarde is 0.2 dan wordt het aantal standaard deviaties van mu(50%) tot 20% berekend.
-       :param mu: gemiddelde van de normale verdelingen
-       :param sigma: standaard deviatie van de normale verdelingen
-       :return: het aantal standaard deviaties van mu tot de grens_waarde
+    :param grens_perc: getal tussen 0 en 1. Stel grens_waarde is 0.2 dan wordt het aantal standaard deviaties van mu(50%) tot 20% berekend.
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+    :return: het aantal standaard deviaties van mu tot de grens_waarde
     """
     if not isinstance(grens_perc, (int, float)) or not isinstance(mu, (int, float)) \
             or not isinstance(sigma, (int, float)):
@@ -78,11 +78,11 @@ def grens(grens_perc: float, mu: float, sigma: float) -> float:
 
 def helling(punt1: np.ndarray, punt2: np.ndarray) -> float:
     """Berekend de helling in graden tussen twee coordinaten.
-       Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen.
+    Kan gebruikt worden om de richting van de Ellipse in Voronoi-diagrammen te bepalen.
 
-       :param punt1: Numpy array met een enkele row: [x, y]
-       :param punt2: Numpy array met een enkele row: [x, y]
-       :return: de hoek in aantal graden tussen punt1 en punt2
+    :param punt1: Numpy array met een enkele row: [x, y]
+    :param punt2: Numpy array met een enkele row: [x, y]
+    :return: de hoek in aantal graden tussen punt1 en punt2
     """
     if not isinstance(punt1, np.ndarray) or not isinstance(punt2, np.ndarray):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
@@ -98,11 +98,11 @@ def helling(punt1: np.ndarray, punt2: np.ndarray) -> float:
 
 def middelpunt_afstanden(punten: np.ndarray) -> list:
     """Berekend de afstand tot het middelpunt voor iedere combinatie van twee punten.
-       Input is een np.array() van N bij 2.
-       Gebaseerd op: https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py
+    Input is een np.array() van N bij 2.
+    Gebaseerd op: https://github.com/scipy/scipy/blob/master/scipy/spatial/_plotutils.py
 
-       :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
-       :return: lijst van afstanden tussen alle belanghebbende punten
+    :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
+    :return: lijst van afstanden tussen alle belanghebbende punten
     """
     if not isinstance(punten, (np.ndarray, pd.DataFrame)):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
@@ -165,10 +165,9 @@ def perc_volledige_infectie(matrix_verloop: np.ndarray) -> tuple:
     return tuple((1 / max(lijst) * punt for punt in lijst))
 
 
-def matrix_vec_verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0,
-                       sigma: float = 1) -> np.ndarray:
-    """Berekend voor iedere stap in de tijd de matrix uit. Iedere stap wordt opgeslagen en vormen samen
-    een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.
+def matrix_vec_verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0, sigma: float = 1) -> np.ndarray:
+    """Berekend voor iedere stap in de tijd de matrix uit.
+    Iedere stap wordt opgeslagen en vormen samen een n bij m matrix. N voor het aantal punten en m voor het aantal periodes.
 
     :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
     :param vector: Numpy array van n bij 1. Bevat per cell 0 of 1. Iedere cell waar 1 staat, begint de infectie.

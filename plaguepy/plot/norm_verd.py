@@ -1,28 +1,27 @@
 import matplotlib.pyplot as plt  # Voor de grafieken
 import numpy as np  # Om data als arrays op te kunnen slaan en de normale verdeling te kunnen tekenen
-from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
+import seaborn as sns
 from scipy.spatial import Voronoi
 from scipy.stats import norm  # Om de lijn van de normale verdeling te tekenen. Getallen zijn zelf berekend.
 
 from plaguepy import bereken
 
-style.use('seaborn')
+sns.set()
 
 
 def normale_verdeling(mu: float, sigma: float, mid_afstand: float, labels: tuple) -> None:
-    """Plot-code afgeleid van: Thijs van den Berg (Jun. 2019)
-       https://github.com/Denbergvanthijs/AC-opdrachten/
+    """Plot-code afgeleid van: Thijs van den Berg (Jun. 2019).
+    https://github.com/Denbergvanthijs/AC-opdrachten/
 
-       Mu en sigma zijn vaak 0 resp. 1
-       mid_afstand is de hemelsbrede afstand naar het middelpunt vanaf een punt
+    Mu en sigma zijn vaak 0 resp. 1
+    mid_afstand is de hemelsbrede afstand naar het middelpunt vanaf een punt
 
-       :param mu: gemiddelde van de normale verdelingen
-       :param sigma: standaard deviatie van de normale verdelingen
-       :param mid_afstand: Afstand van de twee punten tot het middelpunt
-       :param labels: Lijst van twee strings, labels[0] is de naam van eerste verdeling, idem voor labels[1]
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+    :param mid_afstand: Afstand van de twee punten tot het middelpunt
+    :param labels: Lijst van twee strings, labels[0] is de naam van eerste verdeling, idem voor labels[1]
 
-       :returns: Plot met twee normale verdelingen. In de titel het percentage dat zij overlappen
-                 en de meegegeven afstand tot het middelpunt.
+    :returns: Plot met twee normale verdelingen. In de titel het percentage dat zij overlappen en de meegegeven afstand tot het middelpunt.
     """
     if not isinstance(mu, (int, float)) or not isinstance(sigma, (int, float)) \
             or not isinstance(mid_afstand, (int, float)) or not isinstance(labels, (list, tuple)):
@@ -53,14 +52,14 @@ def normale_verdeling(mu: float, sigma: float, mid_afstand: float, labels: tuple
 
 def normale_verdeling_compleet(punten: np.ndarray) -> None:
     """Plot de normale verdelingen van alle mogelijke combinaties van punten.
-        Een zichtbare Voronoi is niet nodig om berekeningen uit te voeren.
-        De voronoi wordt echter wel gebruikt om de punten te berekenen.
+    Een zichtbare Voronoi is niet nodig om berekeningen uit te voeren.
+    De voronoi wordt echter wel gebruikt om de punten te berekenen.
 
-        :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
-        :returns: Alle mogelijke plots met twee normale verdelingen.
-                  In de titel het percentage dat zij overlappen
-                  en de meegegeven afstand tot het middelpunt.
-                  Normale verdelingen die minder dan 0.00% overlappen worden niet geplot.
+    :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
+    :returns: Alle mogelijke plots met twee normale verdelingen.
+              In de titel het percentage dat zij overlappen
+              en de meegegeven afstand tot het middelpunt.
+              Normale verdelingen die minder dan 0.00% overlappen worden niet geplot.
 
     """
     if not isinstance(punten, np.ndarray):

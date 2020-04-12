@@ -4,32 +4,32 @@ import matplotlib.lines as mlines
 import matplotlib.pyplot as plt  # Voor de grafieken
 import numpy as np  # Om data als arrays op te kunnen slaan en de normale verdeling te kunnen tekenen
 import pandas as pd
+import seaborn as sns
 from cartopy.io.img_tiles import Stamen
 from matplotlib import cm
-from matplotlib import style  # Style van de grafiek aanpassen naar eigen smaak
 from matplotlib.patches import Ellipse
 from scipy.spatial import Voronoi
 from scipy.spatial import voronoi_plot_2d as SPvorPlot
 
 from plaguepy import bereken
 
-style.use('seaborn')
+sns.set()
 
 
 def voronoi(punten: np.ndarray, mu: float, sigma: float, tekst: bool = True, ellipse: bool = True) -> None:
     """Plot een Voronoi-diagram ter grote van de maximale x en y-coördinaten.
-       Bij ieder middelpunt is eventueel het %-overlap te zien en het daarbijbehordende bereik.
+    Bij ieder middelpunt is eventueel het %-overlap te zien en het daarbijbehordende bereik.
 
-       :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
-       :param mu: gemiddelde van de normale verdelingen
-       :param sigma: standaard deviatie van de normale verdelingen
-       :param tekst: keuze of de percentages zichtbaar zijn in de plot.
-                     Aan te raden om uit te zetten bij veel punten.
-       :param ellipse: keuze of de ellipsen zichtbaar zijn in de plot.
-                     Aan te raden om uit te zetten bij veel punten
+    :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+    :param tekst: keuze of de percentages zichtbaar zijn in de plot.
+                    Aan te raden om uit te zetten bij veel punten.
+    :param ellipse: keuze of de ellipsen zichtbaar zijn in de plot.
+                    Aan te raden om uit te zetten bij veel punten
 
-       :returns: Plot met een Voronoi-diagram en stippen op de coordinaten meegegeven in 'punten'
-       """
+    :returns: Plot met een Voronoi-diagram en stippen op de coordinaten meegegeven in 'punten'
+    """
     if not isinstance(punten, np.ndarray) or not isinstance(mu, (float, int)) or not isinstance(sigma, (float, int)) \
             or not isinstance(tekst, bool) or not isinstance(ellipse, bool):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
@@ -75,21 +75,20 @@ def voronoi(punten: np.ndarray, mu: float, sigma: float, tekst: bool = True, ell
 
 def verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0, sigma: float = 1,
             legenda: bool = True, cmap_type: str = "hot") -> None:
-    """Plot het verloop van een verspreiding waarbij het begin van de infectie
-       in de vector wordt aangegeven. Verspreiding op tijdstip t gaat
-       volgende de formule v·M^t.
+    """Plot het verloop van een verspreiding waarbij het begin van de infectie in de vector wordt aangegeven.
+    Verspreiding op tijdstip t gaat volgende de formule v·M^t.
 
-       :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
-       :param vector: Numpy array van n bij 1. Bevat per cell 0 of 1.
-                      Iedere cell waar 1 staat, begint de infectie.
-       :param perioden:  Het aantal perioden dat het verloop berekend en getoont moet worden.
-       :param mu: gemiddelde van de normale verdelingen
-       :param sigma: standaard deviatie van de normale verdelingen
-       :param legenda: optioneel, toont de legenda.
-              Aangeraden om uit te zetten als er heel veel punten dienen te worden geplot
-       :param cmap_type: De te gebruiken colormap voor de plot
+    :param punten: Numpy array van n bij 2. Iedere row bevat een x en y coördinaat.
+    :param vector: Numpy array van n bij 1. Bevat per cell 0 of 1.
+                    Iedere cell waar 1 staat, begint de infectie.
+    :param perioden:  Het aantal perioden dat het verloop berekend en getoont moet worden.
+    :param mu: gemiddelde van de normale verdelingen
+    :param sigma: standaard deviatie van de normale verdelingen
+    :param legenda: optioneel, toont de legenda.
+            Aangeraden om uit te zetten als er heel veel punten dienen te worden geplot
+    :param cmap_type: De te gebruiken colormap voor de plot
 
-       :returns: Plot met het verloop van de infectiegraad/verspreiding van de punten
+    :returns: Plot met het verloop van de infectiegraad/verspreiding van de punten
     """
     if not isinstance(punten, np.ndarray) or not isinstance(vector, np.ndarray) or not isinstance(perioden, int) \
             or not isinstance(mu, (float, int)) or not isinstance(sigma, (float, int)) or not isinstance(legenda, bool) \
@@ -136,7 +135,8 @@ def kaart(file_path: str, punten: np.ndarray, vector: np.ndarray, perioden: int,
     :param sigma: standaard deviatie van de normale verdelingen
     :param cmap_type: De te gebruiken colormap voor de plot
 
-    :returns: Een kaart met de geplotte punten, al dan niet met een 'terrein-achtergrond'. Kleur van de stippen staat voor de periode wanneer zij volledig besmet raakten.
+    :returns: Een kaart met de geplotte punten, al dan niet met een 'terrein-achtergrond'.
+              Kleur van de stippen staat voor de periode wanneer zij volledig besmet raakten.
     """
     if not isinstance(file_path, str) or not isinstance(punten, np.ndarray) or not isinstance(vector, np.ndarray) \
             or not isinstance(perioden, int) or not isinstance(terrein, bool) or not isinstance(sep, str) or not \
