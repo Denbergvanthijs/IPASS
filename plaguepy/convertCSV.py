@@ -2,8 +2,8 @@ import os
 import time
 
 import pandas as pd
-from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from geopy.geocoders import Nominatim
 
 
 def straat2coord(file_path: str, woonplaats: str, woonplaats_header: str, adres_header: str, sep: str = ";") -> None:
@@ -32,7 +32,7 @@ def straat2coord(file_path: str, woonplaats: str, woonplaats_header: str, adres_
     subset = csv_data.loc[csv_data[woonplaats_header] == woonplaats]  # Selectie maken van de data
 
     geo_locator = Nominatim(user_agent="IPASS Project - Thijs van den Berg 2019")  # Variabele opzetten voor API-calls
-    geo_locaties = pd.DataFrame(columns=['latitude', 'longitude'])  # DataFrame
+    geo_locaties = pd.DataFrame(columns=["latitude", "longitude"])  # DataFrame
 
     for adres in subset[adres_header].drop_duplicates():  # Ieder adres omzetten naar coördinaten
         try:
@@ -41,7 +41,7 @@ def straat2coord(file_path: str, woonplaats: str, woonplaats_header: str, adres_
             locatie = None
 
         if locatie is not None:
-            geo_locaties = geo_locaties.append({'latitude': locatie.latitude, 'longitude': locatie.longitude},
+            geo_locaties = geo_locaties.append({"latitude": locatie.latitude, "longitude": locatie.longitude},
                                                ignore_index=True)
 
         time.sleep(0.5)  # ToManyRequestsError tegengaan

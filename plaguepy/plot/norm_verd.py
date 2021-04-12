@@ -1,10 +1,9 @@
 import matplotlib.pyplot as plt  # Voor de grafieken
 import numpy as np  # Om data als arrays op te kunnen slaan en de normale verdeling te kunnen tekenen
 import seaborn as sns
+from plaguepy import bereken
 from scipy.spatial import Voronoi
 from scipy.stats import norm  # Om de lijn van de normale verdeling te tekenen. Getallen zijn zelf berekend.
-
-from plaguepy import bereken
 
 sns.set()
 
@@ -30,14 +29,14 @@ def normale_verdeling(mu: float, sigma: float, mid_afstand: float, labels: tuple
     if len(labels) != 2:
         raise ValueError("Lijst/tuple `labels` moet twee elementen bevatten")
 
-    plt.rcParams['figure.figsize'] = [9, 6]  # Grotere plots in Jupyter Notebook
+    plt.rcParams["figure.figsize"] = [9, 6]  # Grotere plots in Jupyter Notebook
     percentage_overlap = bereken.perc_overlap(mid_afstand, mu, sigma)
     lijn = np.linspace(mu - 4 * sigma - mid_afstand,
                        mu + 4 * sigma + mid_afstand)  # De lengte van de lijn van normale verdelingen
 
     plt.plot(lijn, norm.pdf(lijn, mu - mid_afstand, sigma), label=labels[0])  # De linker normale verdeling
     plt.plot(lijn, norm.pdf(lijn, mu + mid_afstand, sigma), label=labels[1])  # De rechter normale verdeling
-    plt.axvline(x=mu, color="black", linestyle='--', label='Middelpunt')
+    plt.axvline(x=mu, color="black", linestyle="--", label="Middelpunt")
 
     plt.xlim(mu - 3 * sigma - mid_afstand,
              mu + 3 * sigma + mid_afstand)  # Tenminste 99,8% zichtbaar van beide verdelingen

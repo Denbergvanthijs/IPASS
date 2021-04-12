@@ -34,7 +34,7 @@ def voronoi(punten: np.ndarray, mu: float, sigma: float, tekst: bool = True, ell
             or not isinstance(tekst, bool) or not isinstance(ellipse, bool):
         raise ValueError("Verkeerde waardes meegegeven als argumenten")
 
-    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    plt.rcParams["figure.figsize"] = [8, 8]  # Grotere plots in Jupyter Notebook
 
     vor = Voronoi(punten)  # Voronoi berekenen
     SPvorPlot(vor)  # Voronoi plotten
@@ -63,11 +63,11 @@ def voronoi(punten: np.ndarray, mu: float, sigma: float, tekst: bool = True, ell
     plt.ylabel("Y-coördinaten")
 
     if ellipse:
-        legenda = (mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='b', markersize=15),
-                   mlines.Line2D([0], [0], marker='o', color='w', label='Overlapping', markerfacecolor='r',
+        legenda = (mlines.Line2D([0], [0], marker="o", color="w", label="Punt", markerfacecolor="b", markersize=15),
+                   mlines.Line2D([0], [0], marker="o", color="w", label="Overlapping", markerfacecolor="r",
                                  markersize=15))
     else:
-        legenda = [mlines.Line2D([0], [0], marker='o', color='w', label='Punt', markerfacecolor='b', markersize=15)]
+        legenda = [mlines.Line2D([0], [0], marker="o", color="w", label="Punt", markerfacecolor="b", markersize=15)]
 
     plt.legend(handles=legenda)
     plt.show()
@@ -99,7 +99,7 @@ def verloop(punten: np.ndarray, vector: np.ndarray, perioden: int, mu: float = 0
         raise ValueError("Vector en punten moeten even lang zijn.")
 
     print("Even geduld a.u.b, dit kan even duren...")
-    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    plt.rcParams["figure.figsize"] = [8, 8]  # Grotere plots in Jupyter Notebook
 
     matrix_verloop = bereken.matrix_vec_verloop(punten, vector, perioden, mu=mu, sigma=sigma)
     perc_voll_inf = bereken.perc_volledige_infectie(matrix_verloop)
@@ -147,22 +147,22 @@ def kaart(file_path: str, punten: np.ndarray, vector: np.ndarray, perioden: int,
         raise ValueError("Vector en punten moeten even lang zijn.")
 
     print("Kaart aan het maken. \nEven geduld a.u.b, dit kan even duren...")
-    plt.rcParams['figure.figsize'] = [8, 8]  # Grotere plots in Jupyter Notebook
+    plt.rcParams["figure.figsize"] = [8, 8]  # Grotere plots in Jupyter Notebook
 
     coordinaten = pd.read_csv(file_path, sep=sep)
-    coordinaten = coordinaten.loc[(coordinaten['latitude'] < 53.5) & (coordinaten['latitude'] > 50.7) &
-                                  (coordinaten['longitude'] < 7.3) & (coordinaten['longitude'] > 3.3)]  # Filter NL
+    coordinaten = coordinaten.loc[(coordinaten["latitude"] < 53.5) & (coordinaten["latitude"] > 50.7) &
+                                  (coordinaten["longitude"] < 7.3) & (coordinaten["longitude"] > 3.3)]  # Filter NL
     coordinaten = coordinaten.values[:, :]  # DataFrame omzetten naar Numpy-array
 
-    sf_path = 'data/shapefiles/gadm36_NLD_2.shp'
+    sf_path = "data/shapefiles/gadm36_NLD_2.shp"
     sf_data = list(shpreader.Reader(sf_path).geometries())
     ax = plt.axes(projection=ccrs.EuroPP())
 
     if terrein:
-        ax.add_image(Stamen('terrain-background'), 12)
-        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor='black', facecolor='none', alpha=1)
+        ax.add_image(Stamen("terrain-background"), 12)
+        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor="black", facecolor="none", alpha=1)
     else:
-        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor='black', facecolor='orange', alpha=0.2)
+        ax.add_geometries(sf_data, ccrs.PlateCarree(), edgecolor="black", facecolor="orange", alpha=0.2)
 
     ax.set_extent([min(coordinaten[:, 1]), max(coordinaten[:, 1]),
                    min(coordinaten[:, 0]), max(coordinaten[:, 0])])  # Grootte gelijk aan min/max van coordinaten
@@ -172,11 +172,11 @@ def kaart(file_path: str, punten: np.ndarray, vector: np.ndarray, perioden: int,
     color_map = cm.get_cmap(cmap_type, 12)
 
     for i, coord in enumerate(coordinaten):  # Stippen tekenen
-        ax.plot(coord[1], coord[0], marker='o', markersize=3, color=color_map(perc_voll_inf[i]),
+        ax.plot(coord[1], coord[0], marker="o", markersize=3, color=color_map(perc_voll_inf[i]),
                 transform=ccrs.PlateCarree())
 
     for i, punt in enumerate(vector):
         if punt:
-            ax.plot(punten[i][1], punten[i][0], marker='D', markersize=12, color="red", transform=ccrs.PlateCarree())
+            ax.plot(punten[i][1], punten[i][0], marker="D", markersize=12, color="red", transform=ccrs.PlateCarree())
 
     plt.show()
